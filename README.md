@@ -1,96 +1,212 @@
-# [Nombre de la Aplicación]
+# DSGram
 
 ## 👥 Miembros del Equipo
 | Nombre y Apellidos | Correo URJC | Usuario GitHub |
 |:--- |:--- |:--- |
-| [Nombre 1] | [email1]@alumnos.urjc.es | [User1] |
-| [Nombre 2] | [email2]@alumnos.urjc.es | [User2] |
-| [Nombre 3] | [email3]@alumnos.urjc.es | [User3] |
-| [Nombre 4] | [email4]@alumnos.urjc.es | [User4] |
+| Jaime Torroba Martínez | j.torroba.2023@alumnos.urjc.es | JaTorroba |
+| Isidoro Pérez Rivera | i.perezr.2023@alumnos.urjc.es | Isiperezz |
+| Pablo Ruiz Uroz | p.ruizu.2023@alumnos.urjc.es | pruizz |
+| Hugo Capa Mora | h.capa.2023@alumnos.urjc.es | huugooocm |
 
 ---
 
-## 🎭 **Preparación: Definición del Proyecto**
+## 🎭 **Preparación 1: Definición del Proyecto**
 
 ### **Descripción del Tema**
-[Escribe aquí una descripción breve y concisa de qué trata tu aplicación, el sector al que pertenece y qué valor aporta al usuario].
+Red social de resolución de ejercicios de Estructuras de Datos donde los usuarios permiten interacturar y elegir la Estructura que consideren para resolver un ejercicio, creando la Estructura en tiempo real mediante un visualizador. 
+La aplicación se ubica en sector educativo y social. Permite a los usuarios aprender a utilizar estructuras de datos para la resolución de casos de uso, aportándole una herramienta para potenciar su capacidad de identificación de uso de estas en problemas reales propuestos por otros usuarios.
 
 ### **Entidades**
 Indicar las entidades principales que gestionará la aplicación y las relaciones entre ellas:
 
-1. **[Entidad 1]**: [Ej: Usuario]
-2. **[Entidad 2]**: [Ej: Producto]
-3. **[Entidad 3]**: [Ej: Pedido]
-4. **[Entidad 4]**: [Ej: Categoría]
+1. **Usuario**
+2. **Ejercicio**
+3. **Lista de ejercicios**
+4. **Comentario**
+5. **Solución**
+
 
 **Relaciones entre entidades:**
-- [Ej: Usuario - Pedido: Un usuario puede tener múltiples pedidos (1:N)]
-- [Ej: Pedido - Producto: Un pedido puede contener múltiples productos y un producto puede estar en múltiples pedidos (N:M)]
-- [Ej: Producto - Categoría: Un producto pertenece a una categoría (N:1)]
-- [Descripción de otras relaciones relevantes]
-
+- Usuario - Ejercicio: Un usuario puede resolver múltiples ejercicios. Un ejercicio puede ser solucionado por múltiples usuarios (N:M).
+- Usuario - Lista de ejercicios: un usuario puede tener múltiples listas de ejercicios (1:N).
+- Lista de ejercicios - Ejercicio: una lista de ejercicios puede tener múltiples ejercicios (1:N).
+- Ejercicio - Solución: un ejercicio puede tener múltiples soluciones de distintos usuarios (1:N).
+- Solución - Comentario: una solución a un ejercicio puede tener múltiples comentarios (1:N).
+- Usuario - Usuario: un usuario puede seguir a uno o muchos usuarios y puede ser seguido por uno o muchos usuarios (N:M).
+- Usuario - Comentario: un usuario puede hacer múltiples comentarios en una solución a un ejercicio (1:N).
+  
 ### **Permisos de los Usuarios**
 Describir los permisos de cada tipo de usuario e indicar de qué entidades es dueño:
 
 * **Usuario Anónimo**: 
-  - Permisos: [Ej: Visualización de catálogo, búsqueda de productos, registro]
-  - No es dueño de ninguna entidad
+  - Permisos: Visualización de ejercicios.
+  - No es dueño de ninguna entidad.
 
 * **Usuario Registrado**: 
-  - Permisos: [Ej: Gestión de perfil, realizar pedidos, crear valoraciones]
-  - Es dueño de: [Ej: Sus propios Pedidos, su Perfil de Usuario, sus Valoraciones]
+  - Permisos: Gestión de su perfil, crear y editar listas de ejercicios suyas, resolver ejercicios, comentar en soluciones a ejercicios, seguir a otro usuario, crear un ejercicio.
+  - Es dueño de: Sus listas de ejercicios y ejercicios creados, comentarios realizados en otras soluciones y soluciones realizadas por él.
 
 * **Administrador**: 
-  - Permisos: [Ej: Gestión completa de productos (CRUD), visualización de estadísticas, moderación de contenido]
-  - Es dueño de: [Ej: Productos, Categorías, puede gestionar todos los Pedidos y Usuarios]
+  - Permisos: Gestión de todos los usuarios, listas de ejercicios, ejercicios, soluciones y comentarios de todo el sistema.
+  - Es dueño de: Cuentas de usuario, listas de ejercicios, ejercicios, soluciones y comentarios de todo el sistema; puede gestionar toda la información del sistema, a excepción de datos personales de los usuarios.
 
 ### **Imágenes**
 Indicar qué entidades tendrán asociadas una o varias imágenes:
 
-- **[Entidad con imágenes 1]**: [Ej: Usuario - Una imagen de avatar por usuario]
-- **[Entidad con imágenes 2]**: [Ej: Producto - Múltiples imágenes por producto (galería)]
-- **[Entidad con imágenes 3]**: [Ej: Categoría - Una imagen representativa por categoría]
+- **Usuario**: Una imagen de avatar por usuario.
+- **Solución**: Una imagen en la solución de la Estructura de Datos que ha sido construida por el usuario.
 
 ### **Gráficos**
 Indicar qué información se mostrará usando gráficos y de qué tipo serán:
 
-- **Gráfico 1**: [Ej: Ventas mensuales - Gráfico de barras]
-- **Gráfico 2**: [Ej: Productos más vendidos - Gráfico de tarta/circular]
-- **Gráfico 3**: [Ej: Evolución de usuarios registrados - Gráfico de líneas]
-- **Gráfico 4**: [Ej: Distribución de pedidos por categoría - Gráfico de barras horizontales]
+- **Gráfico 1**: gráfico de barras de comparación de número de seguidores con número de seguidos.
+- **Gráfico 2**: gráfico de progresión del número de seguidores a lo largo del tiempo.
+
 
 ### **Tecnología Complementaria**
-Indicar qué tecnología complementaria se empleará:
+Se podrá exportar un ejercicio a PDF y se utilizará una librería externa (CytoscapeJS) para el visualizador de artefactos. Se autentificará los permisos de los usuarios con OAuth2 o JWT.
 
-- [Ej: Envío de correos electrónicos automáticos mediante JavaMailSender]
-- [Ej: Generación de PDFs de facturas usando iText o similar]
+- Exportación a PDFs de los ejercicios con iText o similar.
+- Visualización de artefactos para la creación de Estructuras de Datos con CytoscapeJS o similar.
+- Sistema de autenticación OAuth2 o JWT.
 
 ### **Algoritmo o Consulta Avanzada**
 Indicar cuál será el algoritmo o consulta avanzada que se implementará:
 
-- **Algoritmo/Consulta**: [Ej: Sistema de recomendaciones basado en el historial de compras del usuario]
-- **Descripción**: [Ej: Analiza los productos comprados previamente y sugiere productos similares o complementarios utilizando filtrado colaborativo]
-- **Alternativa**: [Ej: Consulta compleja que agrupe ventas por categoría, mes y región, con cálculo de tendencias]
+- **Algoritmo/Consulta**: Sistema de recomendaciones de seguimiento a otros usuarios en base a las personas que uno ya sigue.
+- **Descripción**: Buscar sugerencias de seguimiento a partir de seguidores de seguidores.
+- **Alternativa**: Priorizar el feed  de publicaciones por el contenido de los ejercicios de las listas que referencian en vez de orden cronológico.
 
 ---
 
-## 🛠 **Práctica 1: Maquetación de páginas web con HTML y CSS**
+## 🛠 **Preparación 2: Maquetación de páginas con HTML y CSS**
+
+### **Vídeo de Demostración**
+📹 https://youtu.be/GWdQl1jbLx8
+> Vídeo mostrando las principales funcionalidades de la aplicación web.
 
 ### **Diagrama de Navegación**
 Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicación:
 
-![Diagrama de Navegación](images/navigation-diagram.png)
-
-> [Descripción opcional del flujo de navegación: Ej: "El usuario puede acceder desde la página principal a todas las secciones mediante el menú de navegación. Los usuarios anónimos solo tienen acceso a las páginas públicas, mientras que los registrados pueden acceder a su perfil y panel de usuario."]
+![Diagrama de Navegación](images/navigation-diagram.jpg)
 
 ### **Capturas de Pantalla y Descripción de Páginas**
 
 #### **1. Página Principal / Home**
 ![Página Principal](images/home-page.png)
+> Página de inicio que muestra publicaciones recientes que refieren a contenido nuevo o modificado en listas de usuarios seguidos, ejercicios o soluciones suyas. También se mostrarán algunos de los usuarios seguidos, así como una barra de búsqueda para poder encontrar nuevos usuarios que seguir. 
 
-> [Descripción breve: Ej: "Página de inicio que muestra los productos destacados, categorías principales y un banner promocional. Incluye barra de navegación y acceso a registro/login para usuarios no autenticados."]
+#### **2. Página de inicio de sesión / Log In**
+![Log In](images/log-in.png)
+> Página que se muestra para acceder a la aplicación en la que el usuario podrá iniciar sesión o acceder de manera anónima.
 
-#### **AQUÍ AÑADIR EL RESTO DE PÁGINAS**
+#### **3. Página de Registro de usuario / Sign up**
+![Sign up](images/sign-up.png)
+> Página en la que un usuario no registrado podrá darse de alta con su correo, nombre de usuario y contraseña y podrá acceder a la aplicación tras hacerlo.
+
+#### **4. Página del perfil de usuario / Profile**
+
+![Porfile](images/profile.png)
+> Página del perfil de usuario que muestra sus datos de la aplicación, sus solicitudes recientes, número de seguidos, seguidores y las listas que tiene subidas. Permite el acceso a editar perfil y cerrar sesión desde un menú que se despliega en la foto de perfil.
+
+#### **5. Página de seguidores / Followers**
+![Followers](images/followers.png)
+> Página que muestra los seguidores de un usuario determinado, permite mostrar más para ver la totalidad de usuarios que le siguen.
+
+#### **6. Página de solicitudes de seguimiento  / Follow-requests**
+![Follow requests](images/follow-requests.png)
+> Página para visualizar la totalidad de solicitudes de seguimiento que tiene un usuario para que pueda aceptarlas o rechazarlas.
+
+#### **7. Página de Lista  / List-view**
+![List](images/list-view.png)
+> Página en la que se podrán encontrar todos los ejercicios de la lista de un usuario
+
+#### **8. Página de ejercicio / Exercise**
+![Exercise](images/exercise.png)
+> Página en la que se encontrará el enunciado de un ejercicio y las soluciones de otros usuarios a este.
+
+#### **9. Página de solución / Solution**
+![Solution](images/solution.png)
+> Página en la que se encontrará la solución de un usuario a un ejercicio y los comentarios de otros usuarios a esta. Los usuarios registrados podrán añadir comentarios.
+
+
+#### **10. Página de creación de una nueva lista/ New-list**
+![New List](images/new-list.png)
+> Página de creación de una nueva lista de ejercicios que serán publicadas por un usuario en la aplicación. Se podra añadir titulo, descripción, y tipo principal de ejercicios.
+
+#### **. 11 Página de creación de un nuevo ejercicio/ New-exercise**
+![New Exercise](images/new-exercise.png)
+> Página de creación de una nuevo ejercicio que formara parte de una lista creada previamente.Cada ejercicicio podra contener nombre, descripción y un pdf adjunto con el enunciado detallado si existiera.
+
+#### **. 12 Página de creación de una nueva solución/ New-Solution**
+![New Solution](images/new-solution.png)
+> Página de creación de una nueva solución creada para uno de los ejercicios publicados de una lista.Se podrá hacer uso del visualizador para crear la solución. 
+
+#### **13. Página panel de administrador  / Admin panel**
+![Admin Panel](images/admin.png)
+> Página para que el usuario administrador pueda visualizar el panel que tiene para poder ejecutar sus poderes especiales, como borrar usuarios, listas y ejercicios.
+
+#### **14. Página de editar perfil  / Edit profile**
+![Edit Profile](images/edit-profile.png)
+> Página para que el usuario pueda editar sus datos de nombre, descripción, especialidad y foto de perfil.
+
+
+
+---
+
+## 🛠 **Práctica 1: Web con HTML generado en servidor y AJAX**
+
+### **Vídeo de Demostración**
+📹 **[Enlace al vídeo en YouTube](https://www.youtube.com/watch?v=x91MPoITQ3I)**
+> Vídeo mostrando las principales funcionalidades de la aplicación web.
+
+### **Navegación y Capturas de Pantalla**
+
+#### **Diagrama de Navegación**
+
+Solo si ha cambiado.
+
+#### **Capturas de Pantalla Actualizadas**
+
+Solo si han cambiado.
+
+### **Instrucciones de Ejecución**
+
+#### **Requisitos Previos**
+- **Java**: versión 21 o superior
+- **Maven**: versión 3.8 o superior
+- **MySQL**: versión 8.0 o superior
+- **Git**: para clonar el repositorio
+
+#### **Pasos para ejecutar la aplicación**
+
+1. **Clonar el repositorio**
+   ```bash
+   git clone https://github.com/[usuario]/[nombre-repositorio].git
+   cd [nombre-repositorio]
+   ```
+
+2. **AQUÍ INDICAR LO SIGUIENTES PASOS**
+
+#### **Credenciales de prueba**
+- **Usuario Admin**: usuario: `admin`, contraseña: `admin`
+- **Usuario Registrado**: usuario: `user`, contraseña: `user`
+
+### **Diagrama de Entidades de Base de Datos**
+
+Diagrama mostrando las entidades, sus campos y relaciones:
+
+![Diagrama Entidad-Relación](images/database-diagram.png)
+
+> [Descripción opcional: Ej: "El diagrama muestra las 4 entidades principales: Usuario, Producto, Pedido y Categoría, con sus respectivos atributos y relaciones 1:N y N:M."]
+
+### **Diagrama de Clases y Templates**
+
+Diagrama de clases de la aplicación con diferenciación por colores o secciones:
+
+![Diagrama de Clases](images/classes-diagram.png)
+
+> [Descripción opcional del diagrama y relaciones principales]
 
 ### **Participación de Miembros en la Práctica 1**
 
@@ -150,115 +266,11 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 ---
 
-## 🛠 **Práctica 2: Web con HTML generado en servidor**
+## 🛠 **Práctica 2: Incorporación de una API REST a la aplicación web, despliegue con Docker y despliegue remoto**
 
-### **Navegación y Capturas de Pantalla**
-
-#### **Diagrama de Navegación**
-
-Solo si ha cambiado.
-
-#### **Capturas de Pantalla Actualizadas**
-
-Solo si han cambiado.
-
-### **Instrucciones de Ejecución**
-
-#### **Requisitos Previos**
-- **Java**: versión 21 o superior
-- **Maven**: versión 3.8 o superior
-- **MySQL**: versión 8.0 o superior
-- **Git**: para clonar el repositorio
-
-#### **Pasos para ejecutar la aplicación**
-
-1. **Clonar el repositorio**
-   ```bash
-   git clone https://github.com/[usuario]/[nombre-repositorio].git
-   cd [nombre-repositorio]
-   ```
-
-2. **AQUÍ INDICAR LO SIGUIENTES PASOS**
-
-#### **Credenciales de prueba**
-- **Usuario Admin**: usuario: `admin`, contraseña: `admin`
-- **Usuario Registrado**: usuario: `user`, contraseña: `user`
-
-### **Diagrama de Entidades de Base de Datos**
-
-Diagrama mostrando las entidades, sus campos y relaciones:
-
-![Diagrama Entidad-Relación](images/database-diagram.png)
-
-> [Descripción opcional: Ej: "El diagrama muestra las 4 entidades principales: Usuario, Producto, Pedido y Categoría, con sus respectivos atributos y relaciones 1:N y N:M."]
-
-### **Diagrama de Clases y Templates**
-
-Diagrama de clases de la aplicación con diferenciación por colores o secciones:
-
-![Diagrama de Clases](images/classes-diagram.png)
-
-> [Descripción opcional del diagrama y relaciones principales]
-
-### **Participación de Miembros en la Práctica 2**
-
-#### **Alumno 1 - [Nombre Completo]**
-
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
-
-| Nº    | Commits      | Files      |
-|:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
-
----
-
-#### **Alumno 2 - [Nombre Completo]**
-
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
-
-| Nº    | Commits      | Files      |
-|:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
-
----
-
-#### **Alumno 3 - [Nombre Completo]**
-
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
-
-| Nº    | Commits      | Files      |
-|:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
-
----
-
-#### **Alumno 4 - [Nombre Completo]**
-
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
-
-| Nº    | Commits      | Files      |
-|:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
-
----
-
-## 🛠 **Práctica 3: API REST, docker y despliegue**
+### **Vídeo de Demostración**
+📹 **[Enlace al vídeo en YouTube](https://www.youtube.com/watch?v=x91MPoITQ3I)**
+> Vídeo mostrando las principales funcionalidades de la aplicación web.
 
 ### **Documentación de la API REST**
 
@@ -339,7 +351,107 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
 | Usuario Registrado | user1 | user123 |
 | Usuario Registrado | user2 | user123 |
 
-### **OTRA DOCUMENTACIÓN ADICIONAL REQUERIDA EN LA PRÁCTICA**
+### **Participación de Miembros en la Práctica 2**
+
+#### **Alumno 1 - [Nombre Completo]**
+
+[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+
+| Nº    | Commits      | Files      |
+|:------------: |:------------:| :------------:|
+|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
+|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
+|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
+|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
+|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+
+---
+
+#### **Alumno 2 - [Nombre Completo]**
+
+[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+
+| Nº    | Commits      | Files      |
+|:------------: |:------------:| :------------:|
+|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
+|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
+|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
+|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
+|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+
+---
+
+#### **Alumno 3 - [Nombre Completo]**
+
+[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+
+| Nº    | Commits      | Files      |
+|:------------: |:------------:| :------------:|
+|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
+|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
+|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
+|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
+|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+
+---
+
+#### **Alumno 4 - [Nombre Completo]**
+
+[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+
+| Nº    | Commits      | Files      |
+|:------------: |:------------:| :------------:|
+|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
+|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
+|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
+|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
+|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+
+---
+
+## 🛠 **Práctica 3: Implementación de la web con arquitectura SPA**
+
+### **Vídeo de Demostración**
+📹 **[Enlace al vídeo en YouTube](URL_del_video)**
+> Vídeo mostrando las principales funcionalidades de la aplicación web.
+
+### **Preparación del Entorno de Desarrollo**
+
+#### **Requisitos Previos**
+- **Node.js**: versión 18.x o superior
+- **npm**: versión 9.x o superior (se instala con Node.js)
+- **Git**: para clonar el repositorio
+
+#### **Pasos para configurar el entorno de desarrollo**
+
+1. **Instalar Node.js y npm**
+   
+   Descarga e instala Node.js desde [https://nodejs.org/](https://nodejs.org/)
+   
+   Verifica la instalación:
+   ```bash
+   node --version
+   npm --version
+   ```
+
+2. **Clonar el repositorio** (si no lo has hecho ya)
+   ```bash
+   git clone https://github.com/[usuario]/[nombre-repositorio].git
+   cd [nombre-repositorio]
+   ```
+
+3. **Navegar a la carpeta del proyecto React**
+   ```bash
+   cd frontend
+   ```
+
+4. **AQUÍ LOS SIGUIENTES PASOS**
+
+### **Diagrama de Clases y Templates de la SPA**
+
+Diagrama mostrando los componentes React, hooks personalizados, servicios y sus relaciones:
+
+![Diagrama de Componentes React](images/spa-classes-diagram.png)
 
 ### **Participación de Miembros en la Práctica 3**
 
@@ -397,4 +509,3 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
 |4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
 |5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
 
----
