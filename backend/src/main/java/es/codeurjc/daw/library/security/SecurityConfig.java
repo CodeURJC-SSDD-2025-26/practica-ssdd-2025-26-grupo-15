@@ -1,0 +1,217 @@
+package es.codeurjc.daw.library.security;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import es.codeurjc.daw.library.security.jwt.JwtRequestFilter;
+import es.codeurjc.daw.library.security.jwt.JwtTokenProvider;
+import es.codeurjc.daw.library.security.jwt.UnauthorizedHandlerJwt;
+
+import java.util.List;
+
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+	@Autowired
+	private RepositoryUserDetailsService userDetailsService;
+
+	@Autowired
+	private OAuth2UserService<OAuth2UserRequest, OAuth2User> customOAuth2UserService;
+
+	@Autowired
+	private OAuthUserService oauthUserService;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+  	private JwtTokenProvider jwtTokenProvider;
+	
+	@Autowired
+	private UnauthorizedHandlerJwt unauthorizedHandlerJwt;
+
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+		return authConfig.getAuthenticationManager();
+	}
+
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
+		authProvider.setPasswordEncoder(passwordEncoder);
+		return authProvider;
+	}
+
+	@Bean
+	@Order(1)
+	public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
+		http.authenticationProvider(authenticationProvider());
+
+		http
+				.securityMatcher("/api/**")
+				.exceptionHandling(handling -> handling.authenticationEntryPoint(unauthorizedHandlerJwt));
+
+		http
+				.authorizeHttpRequests(authorize -> authorize
+					// PUBLIC ENDPOINTS
+						.requestMatchers(HttpMethod.POST, "/api/v1/users/").permitAll()
+						.requestMatchers(HttpMethod.POST, "/api/v1/auth/login").permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/v1/users/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/v1/users/{id}/number-of-followers").permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/v1/users/{id}/number-of-following").permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/v1/exercises/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/v1/exerciselists/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/v1/exercises/{id}").permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/v1/users/{id}").permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/v1/exerciselists/{id}").permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/v1/solutions/{id}").permitAll()
+						.requestMatchers(HttpMethod.GET,"/api/v1/images/{id}").permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/v1/images/{id}/media").permitAll()
+						.requestMatchers(HttpMethod.GET,"/api/v1/posts/**").permitAll()
+						.requestMatchers(HttpMethod.GET,"/api/v1/users/me/followers/").permitAll()
+						.requestMatchers(HttpMethod.GET,"/api/v1/users/me/follows/").permitAll()
+
+
+						
+						// PUBLIC ENDPOINTS
+						.anyRequest().authenticated());
+
+		// Disable Form login Authentication
+		http.formLogin(formLogin -> formLogin.disable());
+
+		// Disable CSRF protection 
+		http.csrf(csrf -> csrf.disable());
+
+		// Disable Basic Authentication
+		http.httpBasic(httpBasic -> httpBasic.disable());
+
+		// Stateless session
+		http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+		// Add JWT Token filter
+		http.addFilterBefore(new JwtRequestFilter(userDetailsService, jwtTokenProvider),
+				UsernamePasswordAuthenticationFilter.class);
+
+		return http.build();
+	}
+	@Bean
+	@Order(2)
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+		http.authenticationProvider(authenticationProvider());
+
+		http
+				.authorizeHttpRequests(authorize -> authorize
+						// PUBLIC PAGES
+						.requestMatchers("/").permitAll()
+						.requestMatchers("/register").permitAll()
+						.requestMatchers("/form-register").permitAll()
+						.requestMatchers("/v3/api-docs/**").permitAll()
+						.requestMatchers("/v3/api-docs.yaml").permitAll()
+						.requestMatchers("/swagger-ui/**").permitAll()
+						.requestMatchers("/swagger-ui.html").permitAll()
+						.requestMatchers("/assets/**").permitAll()
+						.requestMatchers("/js/**").permitAll()
+						.requestMatchers( "/images/**").permitAll()
+						.requestMatchers("/favicon.ico").permitAll()
+						.requestMatchers( "/exercise/{id}").permitAll()
+						.requestMatchers("/list-view/{id}").permitAll()
+						.requestMatchers( "/solution/*").permitAll()
+                        .requestMatchers("/error").permitAll()
+						.requestMatchers("/searchUsers**").permitAll()
+						.requestMatchers("/searchPosts**").permitAll()
+						.requestMatchers("/searchLists**").permitAll()
+						.requestMatchers("/loginerror").permitAll()
+						.requestMatchers("/profile/{id}").permitAll()
+						.requestMatchers("/followers-following/**").permitAll()
+						
+						// PRIVATE PAGES
+						.requestMatchers("/new-list").hasAnyRole("USER")
+						.requestMatchers("/new-exercise").hasAnyRole("USER")
+						.requestMatchers("/add-solution/**").hasAnyRole("USER")
+						.requestMatchers("/exercise/*/new-solution").hasAnyRole("USER")
+						.requestMatchers("/exercise/*/solution/*/delete").hasAnyRole("USER", "ADMIN")
+						.requestMatchers("/edit-list/**").hasAnyRole("USER")
+						.requestMatchers("/solution/**").hasAnyRole("USER", "ADMIN")
+						.requestMatchers("/requestToFollow").hasAnyRole("USER")
+						.requestMatchers("/profile").hasAnyRole("USER", "ADMIN") 
+						.requestMatchers("/acceptRequest/**").hasAnyRole("USER")
+						.requestMatchers("/declineRequest/**").hasAnyRole("USER")
+						.requestMatchers("/edit-profile").hasAnyRole("USER")
+						.requestMatchers("/new-exercise").hasAnyRole("USER")
+						.requestMatchers("/edit-exercise/**").hasAnyRole("USER")
+						.requestMatchers("/newsolution/**").hasAnyRole("USER")		
+						.requestMatchers("/editsolution/**").hasAnyRole("USER")
+						.requestMatchers("/following").hasAnyRole("USER")
+						.requestMatchers("/new-list").hasAnyRole("USER")
+						.requestMatchers("/admin").hasAnyRole("ADMIN")
+						.requestMatchers("/adminSearch**").hasAnyRole("ADMIN")
+						.requestMatchers("/loadModals/**").hasAnyRole("ADMIN")
+						.requestMatchers("/follow-requests").hasAnyRole("USER")				
+						.anyRequest().authenticated())
+						
+				.formLogin(formLogin -> formLogin
+						.loginPage("/login")
+						.usernameParameter("email")
+						.passwordParameter("password")
+						.failureUrl("/loginerror")
+						.defaultSuccessUrl("/", true)
+						.permitAll())
+				.oauth2Login(oauth2 -> oauth2
+						.loginPage("/login")
+						.userInfoEndpoint(userInfo -> userInfo
+								.userService(customOAuth2UserService)   // plain OAuth2 providers
+								.oidcUserService(oidcUserService())      // OIDC providers (Google)
+						)
+						.defaultSuccessUrl("/", true)
+						.failureUrl("/loginerror")
+						.permitAll())
+				.logout(logout -> logout
+						.logoutUrl("/logout")
+						.logoutSuccessUrl("/")
+						.permitAll());
+
+		return http.build();
+	}
+
+
+	private OAuth2UserService<OidcUserRequest, OidcUser> oidcUserService() {
+		final OidcUserService delegate = new OidcUserService();
+		return userRequest -> {
+			OidcUser oidcUser = delegate.loadUser(userRequest);
+
+			String provider  = userRequest.getClientRegistration().getRegistrationId();
+			String providerId = oidcUser.getAttribute("sub");
+			String email      = oidcUser.getAttribute("email");
+			String name       = oidcUser.getAttribute("name");
+			String photo      = oidcUser.getAttribute("picture");
+
+			List<GrantedAuthority> authorities = oauthUserService.processOAuthUser(
+					provider, providerId, email, name, photo);
+
+			return new DefaultOidcUser(authorities, oidcUser.getIdToken(), oidcUser.getUserInfo());
+		};
+	}
+}

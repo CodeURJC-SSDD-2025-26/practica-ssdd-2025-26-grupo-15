@@ -157,128 +157,275 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 ## 🛠 **Práctica 1: Web con HTML generado en servidor y AJAX**
 
 ### **Vídeo de Demostración**
-📹 **[Enlace al vídeo en YouTube](https://www.youtube.com/watch?v=x91MPoITQ3I)**
+📹 **[Enlace al vídeo en YouTube](https://www.youtube.com/watch?v=9E4HDM51W4Y)**
 > Vídeo mostrando las principales funcionalidades de la aplicación web.
 
 ### **Navegación y Capturas de Pantalla**
 
 #### **Diagrama de Navegación**
 
-Solo si ha cambiado.
+Mientras que la apariencia de las pantallas ha cambiado, el flujo de navegación sigue siendo el mismo que el especificado en el anterior diagrama, a excepción de nuevas opciones para administradores que pueden dirigirse a las páginas de detalle de las entidades que gestionan desde el panel de administración. Además, dependiendo del flujo de ejecución y peticiones del usuario se mostrará una información u otra en cada una de las páginas del diagrama p.ej. mostrar el perfil propio o el de otro usuario; sin embargo la navegación entre páginas no se ve alterada.
+
+![Diagrama de navegación actualizado](images/navigation-diagram-2.jpg)
 
 #### **Capturas de Pantalla Actualizadas**
 
-Solo si han cambiado.
+#### **1. Página Principal**
+![Página Principal](images/homep1.png)
+> Página de inicio que muestra publicaciones recientes que refieren a contenido nuevo o modificado en listas de usuarios seguidos, ejercicios o soluciones suyas. También se mostrarán algunos de los usuarios sugeridos, así como una barra de búsqueda para poder encontrar nuevos usuarios que seguir. 
+
+#### **2. Página de inicio de sesión / Log In**
+![Log In](images/loginp1.png)
+> Página que se muestra para acceder a la aplicación en la que el usuario podrá iniciar sesión con correo en la aplicación, cuenta de Google, cuenta de Github o acceder de manera anónima.
+
+#### **3. Página de Registro de usuario / Sign up**
+![Sign up](images/signinp1.png)
+> Página en la que un usuario no registrado podrá darse de alta con su correo, nombre de usuario y contraseña y podrá acceder a la aplicación tras hacerlo.
+
+#### **4. Página Principal Anónima / Anonymous Home**
+![Anonymous Home](images/anonymoushome.png)
+> Vista de la página principal orientada a usuarios no registrados, permitiendo explorar parte de la plataforma antes de iniciar sesión.
+
+#### **5. Vista Anónima / Anonymous View**
+![Anonymous View](images/anonymousview.png)
+> Interfaz que muestra contenido privado a los usuarios que navegan por la aplicación sin tener una cuenta activa.
+
+#### **6. Perfil de Usuario / Profile**
+![Profile](images/profilep1.png)
+> Página personal del usuario donde se muestra su información, biografía, contadores de seguidores/seguidos y las listas de ejercicios que ha creado.
+
+#### **7. Seguidores / Followers**
+![Followers](images/followersp1.png)
+> Listado completo de todos los usuarios que siguen a la cuenta actual, permitiendo gestionar la comunidad.
+
+#### **8. Seguidos / Following**
+![Following](images/followingp1.png)
+> Listado de todas las cuentas a las que el usuario actual está siguiendo en la plataforma.
+
+#### **9. Solicitudes de Seguimiento / Follow Requests**
+![Follow Requests](images/followrequestsp1.png)
+> Panel donde el usuario puede gestionar su privacidad aceptando o rechazando las peticiones de seguimiento de otras personas.
+
+#### **10. Panel de Administración de Usuarios / Admin Panel Users**
+![Admin Panel Users](images/adminpanelusers.png)
+> Herramienta exclusiva para administradores que permite gestionar, buscar y moderar las cuentas de usuario registradas en el sistema.
+
+#### **11. Panel de Administración de Listas / Admin Panel Lists**
+![Admin Panel Lists](images/adminpanellists.png)
+> Vista administrativa diseñada para supervisar, editar o eliminar de forma global las listas creadas por los usuarios.
+
+#### **12. Panel de Administración de Ejercicios / Admin Panel Exercises**
+![Admin Panel Exercises](images/adminpanelexercises.png)
+> Interfaz de administración dedicada a la moderación y control de todos los ejercicios publicados en la plataforma.
+
+#### **13. Editar Perfil / Edit Profile**
+![Edit Profile](images/editprofilep1.png)
+> Formulario de ajustes donde el usuario puede actualizar su foto de perfil, nombre, biografía y especialidad.
+
+#### **14. Vista de Lista / List View**
+![List View](images/listviewp1.png)
+> Visualización detallada de una lista propia, mostrando todos los ejercicios que contiene y permitiendo su completa gestión.
+
+#### **15. Editar Lista / Edit List**
+![Edit List](images/editlistp1.png)
+> Pantalla de edición para modificar los detalles de una lista existente, como cambiar su título o actualizar su descripción.
+
+#### **16. Añadir Lista / Add List**
+![Add List](images/addlistp1.png)
+> Formulario principal para que el usuario pueda crear una nueva lista y empezar a organizar su contenido.
+
+#### **17. Añadir Ejercicio / Add Exercise**
+![Add Exercise](images/addexercisep1.png)
+> Página que permite añadir un nuevo ejercicio a una lista, incluyendo campos para el título, descripción y la subida de un archivo PDF adjunto.
+
+#### **18. Añadir Solución / Add Solution**
+![Add Solution](images/addsolutionp1.png)
+> Interfaz específica para que los usuarios puedan publicar la respuesta o resolución a un ejercicio en concreto.
+
+#### **19. Vista de Ejercicio / Exercise View**
+![Exercise View](images/exerciseviewp1.png)
+> Detalle completo de un ejercicio propio, donde se puede consultar el enunciado, ver el PDF asociado y gestionar las soluciones aportadas.
+
+#### **20. Vista de Solución / Solution View**
+![Solution View](images/solutionviewp1.png)
+> Página enfocada en mostrar la resolución detallada de un ejercicio para su consulta o evaluación, permitiendo su exportación a pdf.
+
+#### **21. Añadir Comentario / Add Comment**
+![Add Comment](images/addcommentviewp1.png)
+> Sección habilitada para interactuar con el contenido, permitiendo dejar feedback, valoraciones o dudas en los ejercicios y soluciones.
+
+#### **22. Perfil de Otro Usuario / Other Profile**
+![Other Profile](images/otherprofilep1.png)
+> Vista pública del perfil de un tercero, donde se pueden consultar sus listas públicas y enviarle una solicitud para seguirle.
+
+#### **23. Vista de Lista (No Propietario) / List View Not Owner**
+![List View Not Owner](images/listviewnotownerp1.png)
+> Visualización de una lista perteneciente a otro usuario. Permite consultar el contenido organizado pero sin opciones de borrado.
+
+#### **24. Vista de Ejercicio (No Propietario) / Exercise View Not Owner**
+![Exercise View Not Owner](images/exerciseviewnotownerp1.png)
+> Pantalla de un ejercicio creado por otra persona. Permite consultar el enunciado y añadir soluciones, pero no borrarlas.
 
 ### **Instrucciones de Ejecución**
 
 #### **Requisitos Previos**
 - **Java**: versión 21 o superior
-- **Maven**: versión 3.8 o superior
-- **MySQL**: versión 8.0 o superior
+- **Maven**: versión 3.8 o superior (`mvn`)
+- **Docker**: para levantar la base de datos MySQL
 - **Git**: para clonar el repositorio
 
 #### **Pasos para ejecutar la aplicación**
 
 1. **Clonar el repositorio**
    ```bash
-   git clone https://github.com/[usuario]/[nombre-repositorio].git
-   cd [nombre-repositorio]
+   git clone https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15.git
+   cd practica-daw-2025-26-grupo-15
    ```
 
-2. **AQUÍ INDICAR LO SIGUIENTES PASOS**
+2. **Crear el archivo `.env` en la raíz del repositorio**
+
+   Es obligatorio crear un fichero llamado `.env` en la raíz del repositorio (junto a `start_db.sh`) con las siguientes variables de entorno:
+   
+   ```properties
+   DB_USERNAME=<usuario>
+   DB_PASSWORD=<contraseña>
+   DB_NAME=<nombre del esquema de BD>
+   DB_CONFIG=<Modo de inicialización de la BD>
+   KEYSTORE_PASSWORD=<contraseña del keystore>
+   KEYSTORE_SECRET=<secreto del keystore>
+   GOOGLE_CLIENT_ID=<client id de Google OAuth2>
+   GOOGLE_CLIENT_SECRET=<client secret de Google OAuth2>
+   GITHUB_CLIENT_ID=<client id de GitHub OAuth2>
+   GITHUB_CLIENT_SECRET=<client secret de GitHub OAuth2>
+   ```
+
+   > Los valores de `KEYSTORE_PASSWORD` y `KEYSTORE_SECRET` deben coincidir con los usados al generar el `keystore.jks` incluido en el proyecto. Los valores de Google y GitHub se obtienen registrando una aplicación OAuth2 en sus respectivas consolas de desarrollador.
+
+3. **Arrancar la base de datos MySQL con Docker**
+   ```bash
+   bash start_db.sh
+   ```
+   Esto levanta un contenedor MySQL 9.2 con la base de datos `dsgram` en el puerto `3306`. Las credenciales son `root` / `password`.
+
+4. **Compilar y ejecutar la aplicación**
+
+   Se puede arrancar de cualquiera de las siguientes formas. En todos los casos es importante que el directorio de trabajo sea la **raíz del repositorio** para que Spring Boot encuentre el `.env`.
+
+   **Opción A — Maven desde terminal** (requiere `mvn` instalado):
+   ```bash
+   mvn -f backend/pom.xml spring-boot:run
+   ```
+
+   **Opción B — Clase `main` de Java** (desde el IDE):
+   Ejecutar directamente la clase `es.codeurjc.daw.library.Application` con la raíz del repositorio como directorio de trabajo (_working directory_).
+
+   **Opción C — Extensión Spring Boot Dashboard de VS Code**:
+   Con la extensión [Spring Boot Dashboard](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-boot-dashboard) instalada, aparecerá el proyecto en el panel lateral. Antes de arrancarlo, asegúrate de que el _working directory_ configurado apunta a la raíz del repositorio (por defecto lo hace si abres VS Code desde ahí). Pulsa el botón ▶ junto al proyecto para iniciarlo.
+
+   > En los tres casos Spring Boot cargará automáticamente el fichero `.env` de la raíz al arrancar.
+
+5. **Acceder a la aplicación**
+
+   La aplicación se sirve únicamente por HTTPS. Abre en el navegador:
+   ```
+   https://localhost:8443
+   ```
+   > El certificado es autofirmado, por lo que el navegador mostrará una advertencia de seguridad. Acepta la excepción para continuar.
 
 #### **Credenciales de prueba**
-- **Usuario Admin**: usuario: `admin`, contraseña: `admin`
-- **Usuario Registrado**: usuario: `user`, contraseña: `user`
+- **Usuario Admin**: usuario: `user1@example.com`, contraseña: `pass`
+- **Usuario Registrado**: usuario: `user2@example.com`, contraseña: `pass`
 
 ### **Diagrama de Entidades de Base de Datos**
 
 Diagrama mostrando las entidades, sus campos y relaciones:
 
-![Diagrama Entidad-Relación](images/database-diagram.png)
+![Diagrama Entidad-Relación](images/Esquema.jpg)
 
-> [Descripción opcional: Ej: "El diagrama muestra las 4 entidades principales: Usuario, Producto, Pedido y Categoría, con sus respectivos atributos y relaciones 1:N y N:M."]
+> El diagrama muestra las entidades de la aplicación
 
 ### **Diagrama de Clases y Templates**
 
 Diagrama de clases de la aplicación con diferenciación por colores o secciones:
 
-![Diagrama de Clases](images/classes-diagram.png)
+![Diagrama de Clases](images/classes-diagram.jpg)
 
-> [Descripción opcional del diagrama y relaciones principales]
+> Los controladores utilizan mútliples servicios. Cada servicio utiliza su respectivo repositorio además de otros servicios que les sean necesarios, lo cual no ha sido representado en el diagrama por simplicidad. Se utilizan también colores diferentes para cada controlador para un mejor entendimiento. Las realciones entre entidades son numerosas porque se ha implementado bidirección entre ellas.
 
 ### **Participación de Miembros en la Práctica 1**
 
-#### **Alumno 1 - [Nombre Completo]**
+#### **Alumno 1 - Hugo Capa Mora**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Responsable del desarrollo integral de la lógica de negocio para la gestión y vista de listas, ejercicios, soluciones y comentarios, junto con la implementación de consultas avanzadas de base de datos para el sistema de sugerencias de seguimiento y validaciones dinámicas en el frontend para optimizar la experiencia de usuario.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [feat: Advanced query algorithm in native SQL for follow-up suggestions](http://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/240b1232c754dfab2742bddd692051dadc4203ec)  | [UserRepository](backend/src/main/java/es/codeurjc/daw/library/repository/UserRepository.java)   |
+|2| [Entities ExerciseList, Exercise, Solution, Comment (bidirectionality of cardinalities missing) & attempt to display list-view](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/1bd9b4bd0bddb631e5b7c74d0ed28cd0c2363996)  | [Exercise](backend/src/main/java/es/codeurjc/daw/library/model/Exercise.java)   |
+|3| [View of solution page & Comment form with PostMapping](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/6e4495b85b32bdc9d0cd457dfad53ff18e1b8c07)  | [CommentController](backend/src/main/java/es/codeurjc/daw/library/controller/CommentController.java)   |
+|4| [Correct navigation between lists, exercises, solutions, and comments](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/4f8c3fa5eae7e1486ebc92d8308c2deef4f7317d)  | [ExerciseListController](backend/src/main/java/es/codeurjc/daw/library/controller/ExerciseListController.java)   |
+|5| [Functionality to add exercises to exercise lists](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/6d646dd2c2d5c6b6714003cdafcc38ebf9e91917)  | [ExerciseService](backend/src/main/java/es/codeurjc/daw/library/service/ExerciseService.java)   |
 
 ---
 
-#### **Alumno 2 - [Nombre Completo]**
+#### **Alumno 2 - Isidoro Pérez Rivera**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Responsable de la lógica e implementación de la relación entre usuarios: solicitudes de seguimiento y funcionalidad de seguir y dejar de seguir usuarios, así como la visualización de dichas características en sus respectivas páginas de detalle. Implementación de la funcionalidad de edición de varias entidades y modularización de plantillas con atributos de mustache.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Implement follow request acceptance and decline functionality, update user profile interactions](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/85c66092258faa55e0c3c4ca41c796544d367ac8)  | [UserController](backend/src/main/java/es/codeurjc/daw/library/controller/UserController.java)   |
+|2| [Refactor followers and following functionality with new unified view and remove deprecated templates. Now its possible to watch other peoples followers and following without being able to make any changes. You also can watch your own followers and following list in which you can do changes](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/a95909881c26dee4a8127df9408343a9fd816d3b)  | [followers-following](backend/src/main/resources/templates/followers-following.html)   |
+|3| [Implement list editing functionality and enhance user interface](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/bbd7b4ec9b0e6cc247adb2ecedabea18d9ca230a)  | [ExerciseListController](backend/src/main/java/es/codeurjc/daw/library/controller/ExerciseListController.java)   |
+|4| [Add user profile editing functionality with validation; update User model and views](github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/ec6a31be2e1ce5344f391cfd82bcc9746badc0ba)  | [edit-profile-form](backend/src/main/resources/templates/edit-profile-form.html)   |
+|5| [Implement follow request feature and update user profile statistics](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/82be6cefbd146b1472aa6e44a76b5f1d2b4a2960)  | [UserController](backend/src/main/java/es/codeurjc/daw/library/controller/UserController.java)   |
 
 ---
 
-#### **Alumno 3 - [Nombre Completo]**
+#### **Alumno 3 - Jaime Torroba Martínez**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Encargado del sistema de Posts, del sistema de scroll implementado con AJAX para los feeds así como en el panel de administración, en el que también se implementa filtrado por el nombre. Búsqueda de usuarios en la página principal y creación y edición de la entidad Exercise con la opción de adjuntar un archico PDF llevando a cabo las comprobaciones necesarias tanto en front como en back para comprobar el tipo de archivo; pudiendo además decargar el PDF adjuntado a un ejercicio ya subido.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Add admin panel full functionalities for searching users, lists & exercises with and without filter.](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/cef1a88dbf68f819d46a31e948df66c982d988d4)  | [AdminController](backend/src/main/java/es/codeurjc/daw/library/controller/AdminController.java)   |
+|2| [ Add following reflexive relation on User](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/1157bb1e6e0dbe1d925541412e2819944ed1373e)  | [feed.js](backend/src/main/resources/static/js/feed.js)   |
+|3| [Add post creation on lists, exercises & comments creation & update.](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/bdcb693980bf179e9ad6d73bdb17313a9d170a22)  | [PostService](backend/src/main/java/es/codeurjc/daw/library/service/PostService.java)   |
+|4| [Add edit and create exercise with pdf input check and appliance. Download pdf file from exercise.](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/c7df8009b963228ab3741234524b9f6a9777e410)  | [ExerciseService](backend/src/main/java/es/codeurjc/daw/library/service/ExerciseService.java)   |
+|5| [Fix search users infinite scroll (end users search bar implementation)](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/36e48d100ff68f2254e9e19d14996f23b3711d8e)  | [home.js](backend/src/main/resources/static/js/home.js)   |
 
 ---
 
-#### **Alumno 4 - [Nombre Completo]**
+#### **Alumno 4 - Pablo Ruiz Uroz**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Responsable de la integración de tecnologías externas, incluyendo la implementación del sistema de autenticación mediante OAuth2 con Google y GitHub, así como la funcionalidad de exportación a PDF. Desarrollo de toda la lógica de seguridad de la aplicación: gestión de usuarios y entidades relacionadas, comprobaciones de permisos y validaciones de acceso.
+Implementación de la lógica de gestión de imágenes en todas las entidades del sistema, asegurando sus correctas relaciones y funcionamiento.
+Desarrollo de las funcionalidades de borrado de usuarios, creación y gestión del panel de administración, y control de la visualización de páginas accesibles para usuarios anónimos.
+Control dinámico de los elementos mostrados en la interfaz según el rol del usuario y definición de la lógica de acceso en función del tipo de usuario autenticado.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Implement OAuth2 authentication with Google and GitHub](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/c2ce9d296370937038237effdd5d12c91a92e2df)  | [OAuthUserServie](backend/src/main/java/es/codeurjc/daw/library/security/OAuthUserService.java)   |
+|2| [Add user registration feature with validation and error handling](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/acdde38588b5c7e5a895fc986cfc6be79ca97a59)  | [UserService](backend/src/main/java/es/codeurjc/daw/library/service/UserService.java)   |
+|3| [Admin Panel Functionality](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/fa3674a6a4a842004cbc3ed0c1422607d878ff95)  | [UserController](backend/src/main/java/es/codeurjc/daw/library/controller/UserController.java)   |
+|4| [PDF Solution Export Functionality](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/aa8ccc589ed7d6dea7735d568148e0fe230d9da3)  | [SolutionPdfExportService](backend/src/main/java/es/codeurjc/daw/library/service/SolutionPdfExportService.java)   |
+|5| [Login with Email Functionality](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/3344f995316134e9a665f3c1364bf095d1c249ad)  | [WebController](backend/src/main/java/es/codeurjc/daw/library/controller/WebController.java)   |
 
 ---
 
 ## 🛠 **Práctica 2: Incorporación de una API REST a la aplicación web, despliegue con Docker y despliegue remoto**
 
 ### **Vídeo de Demostración**
-📹 **[Enlace al vídeo en YouTube](https://www.youtube.com/watch?v=x91MPoITQ3I)**
+📹 **[Enlace al vídeo en YouTube](https://www.youtube.com/watch?v=ECXArVw0AcQ)**
 > Vídeo mostrando las principales funcionalidades de la aplicación web.
 
 ### **Documentación de la API REST**
 
 #### **Especificación OpenAPI**
-📄 **[Especificación OpenAPI (YAML)](/api-docs/api-docs.yaml)**
+📄 **[Especificación OpenAPI (YAML)](backend/api-docs/api-docs.yaml)**
 
 #### **Documentación HTML**
-📖 **[Documentación API REST (HTML)](https://raw.githack.com/[usuario]/[repositorio]/main/api-docs/api-docs.html)**
+📖 **[Documentación API REST (HTML)](https://raw.githack.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/main/backend/api-docs/api-docs.html)**
 
 > La documentación de la API REST se encuentra en la carpeta `/api-docs` del repositorio. Se ha generado automáticamente con SpringDoc a partir de las anotaciones en el código Java.
 
@@ -286,7 +433,8 @@ Diagrama de clases de la aplicación con diferenciación por colores o secciones
 
 Diagrama actualizado incluyendo los @RestController y su relación con los @Service compartidos:
 
-![Diagrama de Clases Actualizado](images/complete-classes-diagram.png)
+![Diagrama de Clases con Web Controllers](images/classes-diagram.jpg)
+![Diagrama de Clases con Rest Controllers](images/rest-classes-diagram.jpg)
 
 ### **Instrucciones de Ejecución con Docker**
 
@@ -296,27 +444,74 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
 
 #### **Pasos para ejecutar con docker-compose:**
 
-1. **Clonar el repositorio** (si no lo has hecho ya):
-   ```bash
-   git clone https://github.com/[usuario]/[repositorio].git
-   cd [repositorio]
+1. **Crear el archivo `.env`**
+
+   Es obligatorio crear un fichero llamado `.env` en el lugar donde se vaya a ejecutar el comando docker compose con las siguientes variables de entorno:
+
+   ```properties
+   DB_USERNAME=<usuario-bd>
+   DB_PASSWORD=<contraseña-bd>
+   DB_NAME=<nombre-esquema-BD>
+   DB_CONFIG=<Modo-inicialización-BD>
+   KEYSTORE_PASSWORD=<contraseña del keystore>
+   KEYSTORE_SECRET=<secreto del keystore>
+   GOOGLE_CLIENT_ID=<client id de Google OAuth2>
+   GOOGLE_CLIENT_SECRET=<client secret de Google OAuth2>
+   GITHUB_CLIENT_ID=<client id de GitHub OAuth2>
+   GITHUB_CLIENT_SECRET=<client secret de GitHub OAuth2>
    ```
 
-2. **AQUÍ LOS SIGUIENTES PASOS**:
+   > Los valores de `KEYSTORE_PASSWORD` y `KEYSTORE_SECRET` deben coincidir con los usados al generar el `keystore.jks` incluido en el proyecto. Los valores de Google y GitHub se obtienen registrando una aplicación OAuth2 en sus respectivas consolas de desarrollador.
+
+3. **Ejecutar los contenedores**:
+   ```bash
+   env $(cat .env | xargs) docker compose -f oci://docker.io/pruizz/dsgram-app-compose:1.0.0 up
+   ```
 
 ### **Construcción de la Imagen Docker**
 
 #### **Requisitos:**
 - Docker instalado en el sistema
+- Una cuenta en Docker Hub u otro registro.
 
 #### **Pasos para construir y publicar la imagen:**
 
-1. **Navegar al directorio de Docker**:
+1. **Construir la imagen**:
+   Para construir la imagen etiquetada, puedes ejecutar el script proporcionado indicando tu nombre de usuario de Docker Hub:
    ```bash
-   cd docker
+   create-image.sh <tu-usuario-dockerhub> <version-tag>
+   ```
+   O también puedes ejecutar el siguiente comando en el mismo directorio donde se encuentra el Dockerfile:
+   ```bash
+   docker build -t <tu-usuario-docker>/<nombre-de-la-imagen>:<version-tag>
    ```
 
-2. **AQUÍ LOS SIGUIENTES PASOS**
+2. **Publicar la imagen**:
+   Inicia sesión en Docker y ejecuta el script de subida:
+   ```bash
+   docker login
+   publish_image.sh <tu-usuario-dockerhub> <version-tag>
+   ```
+   O también puedes ejecutar el siguiente comando:
+    ```bash
+   docker login
+   docker push <tu-usuario-dockerhub>/<nombre-de-la-imagen>:<version-tag>
+   ```
+3. **Publicar el Compose**:
+   Inicia sesión en Docker y ejecuta el script de subida:
+   ```bash
+   docker login
+   publish_docker-compose.sh <tu-usuario-dockerhub> <version-tag>
+   ```
+   O también puedes ejecutar el siguiente comando en el mismo directorio donde se encuentra el docker-compose:
+    ```bash
+   docker login
+   docker compose publish <tu-usuario-dockerhub>/<nombre-compose>:<version-tag>
+   ```
+4. **Descargar el OCI Artifact y ejecutar los contenedores**:
+   ```bash
+   env $(cat .env | xargs) docker compose -f oci://docker.io/pruizz/dsgram-app-compose:1.0.0 up
+   ```
 
 ### **Despliegue en Máquina Virtual**
 
@@ -331,81 +526,106 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
    ```bash
    ssh -i [ruta/a/clave.key] [usuario]@[IP-o-dominio-VM]
    ```
-   
    Ejemplo:
    ```bash
-   ssh -i ssh-keys/app.key vmuser@10.100.139.XXX
+   ssh -i ssh-keys/appWeb15.key vmuser@10.100.139.208
    ```
 
-2. **AQUÍ LOS SIGUIENTES PASOS**:
+2. **Crear el archivo `.env`**
+
+   Es obligatorio crear un fichero llamado (`.env`) en el lugar donde vayas a descargar la imagen de DockerHub:
+
+   ```properties
+   DB_USERNAME=<usuario-bd>
+   DB_PASSWORD=<contraseña-bd>
+   DB_NAME=<nombre-esquema-BD>
+   DB_CONFIG=<Modo-inicialización-BD>
+   KEYSTORE_PASSWORD=<contraseña del keystore>
+   KEYSTORE_SECRET=<secreto del keystore>
+   GOOGLE_CLIENT_ID=<client id de Google OAuth2>
+   GOOGLE_CLIENT_SECRET=<client secret de Google OAuth2>
+   GITHUB_CLIENT_ID=<client id de GitHub OAuth2>
+   GITHUB_CLIENT_SECRET=<client secret de GitHub OAuth2>
+   ```
+
+   > Los valores de `KEYSTORE_PASSWORD` y `KEYSTORE_SECRET` deben coincidir con los usados al generar el `keystore.jks` incluido en el proyecto. Los valores de Google y GitHub se obtienen registrando una aplicación OAuth2 en sus respectivas consolas de desarrollador.
+
+3. **Desplegar la aplicación en la VM**:
+   Navega al directorio donde tienes el archivo (`.env`) e inicia la aplicación:
+   ```bash
+    env $(cat .env | xargs) docker compose -f oci://docker.io/<tu-usuario-dockerhub>/<nombre-compose>:<version-tag> up
+   ```
+   o usar la imagen ya existente:
+   ```bash
+    env $(cat .env | xargs) docker compose -f oci://docker.io/pruizz/dsgram-app-compose:1.0.0 up
+   ```
+
 
 ### **URL de la Aplicación Desplegada**
 
-🌐 **URL de acceso**: `https://[nombre-app].etsii.urjc.es:8443`
+🌐 **URL de acceso**: `https://appweb15.dawgis.etsii.urjc.es:8443`
 
 #### **Credenciales de Usuarios de Ejemplo**
 
-| Rol | Usuario | Contraseña |
-|:---|:---|:---|
-| Administrador | admin | admin123 |
-| Usuario Registrado | user1 | user123 |
-| Usuario Registrado | user2 | user123 |
+- **Usuario Admin**: usuario: `user1@example.com`, contraseña: `pass`
+- **Usuario Registrado**: usuario: `user2@example.com`, contraseña: `pass`
 
 ### **Participación de Miembros en la Práctica 2**
 
-#### **Alumno 1 - [Nombre Completo]**
+#### **Alumno 1 - Hugo Capa Mora**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Responsable de migrar la lógica de negocio a arquitectura API REST, implementando los RestControllers para las operaciones CRUD (GET, POST, PUT, DELETE) y creando los DTOs necesarios para la transferencia de datos y manejo de creación de imágenes. Colaborador de la creación de colecciones en Postman para el testeo de los endpoints. Adicionalmente, he colaborado en la configuración de Docker y Docker Compose para el despliegue de la aplicación y su posterior publicación en Docker Hub.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Implement REST controllers for comments and solutions, enhance DTOs, and add solution creation logic without image](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/8cee39a4e536437e80c45dc6636a84f11593ea69)  | [SolutionRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/SolutionRestController.java)   |
+|2| [feat: enhance ExerciseList and Solution controllers with error handling and response improvements; add image to Solution upload functionality](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/65b04152a777480811c0a16f994af4f972af6d39)  | [SolutionRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/SolutionRestController.java)   |
+|3| [feat: enhance ExerciseList functionality with create and update operations; add ExerciseBasicInfoDTO and UserBasicDTO](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/88008ed4aeee0e5796463e778d033cd5bf60c683)  | [ExerciseListRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseListRestController.java)   |
+|4| [feat: createSolution moved to ExerciseRestController, add ExerciseListPostDTO and SolutionPostDTO; update RestControllers to use new DTOs](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/85e916218dd945c68e63692235e065753a17483f)  | [ExerciseListRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseListRestController.java)   |
+|5| [feat: implement ExerciseList REST controller with CRUD operations and DTO mapping](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/a41ac87a7890630b44057e65943996c866f7c0a1)  | [ExerciseListDTO](backend/src/main/java/es/codeurjc/daw/library/dto/ExerciseListDTO.java)   |
 
 ---
 
-#### **Alumno 2 - [Nombre Completo]**
+#### **Alumno 2 - Isidoro Pérez Rivera**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Responsable de la creación de los endpoints de la entidad Exercise. Implementación de las operaciones CRUD de la entidad Exercise y el diseño de la clase ExerciseRestController y sus respectivos DTOs. Diseño del esquema de clases mostrando la relación entre las clases REST y los Services. Creación de los scripts para publicación de imágenes y artefactos de docker y docker-compose y construcción de la imagen.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Implement Exercise REST controller and service methods; add ExerciseDTO and UserIdDTO](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/2c44ea038ebc9dfdecf5799654e793b926194f8b)  | [ExerciseRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseRestController.java)   |
+|2| [Add delete exercise functionality and update ExerciseDTO structure; introduce ExercisePostDTO and add post exercise functionality. Refactor ExerciseRestController for consistency](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/44ba3cef8a683f80291688c7bc4156281143c4e7)[Part 2](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/95478ec1f5b1ad9ccb7f1b08c5a62b3a2fb2907d) | [ExerciseRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseRestController.java)   |
+|3| [Add updateExercise method and ExercisePutDTO for exercise updates](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/139051a35b1510500215cc97cd287367a2e19207)  | [ExerciseRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseRestController.java)   |
+|4| [Enhance deleteExercise and updateExercise methods with error handling and response entity](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/d58eef948f1326885f41c85a4cbe8f6415295b37)  | [ExerciseRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseRestController.java)   |
+|5| [Create rest class diagram and implement all docker and docker-compose scripts for building and publishing images and artifacts](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/a31d5ad56cd70e638bdb9bf53f99d9cc309d2399)  | [publish_docker-compose.sh](/publish_docker-compose.sh)   |
 
 ---
 
-#### **Alumno 3 - [Nombre Completo]**
-
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+#### **Alumno 3 - Jaime Torroba Martínez**
+Encargado del listado de todas las entidades listables de forma paginada y dinámica en base a parámetros para lo cual se llevó a cabo la refactorización de búsqueda de elementos listados en un Service, de manera que quede desplazada en la lógica de negocio y sea reutilizable. Encargado a su vez de los endpoints relacionados con la entidad Comentario y de la entidad Post, y con los relacionados con la carga, descarga y borrado del pdf de un ejercicio.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Add pdf upload, download and deletition for Exercise entity](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/bf8a00880eb62dceca5ddcf6a5eb91336cd0a106)  | [ExerciseRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseRestController.java)   |
+|2| [Add POST & DELETE methods for Post entity, and all methods involved. Fix multiple Security issues regarding authorization in deletition & update, and incorrect exception catches and server response.](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/c778eb4a26cad80b9280d258c44ed33af9360d15)  | [PostRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/PostRestController.java)   |
+|3| [Add Comment entity POST, GET & DELETE endpoints. Create CommentDTO's & CommentMapper along with implementation of CommentRestController. Fix wrong content load in previous web controllers for pageable petitions.](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/c2570bf7440f10493355ce697efe545a4f28e9fd)  | [CommentRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/CommentRestController.java)   |
+|4| [feat: complete paged GET petitions for users, posts, exercises and exerciselists depending on parameters.](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/1983d1d3201ce023bf2f9ddb226bed946e81f082)  | [SearchService](backend/src/main/java/es/codeurjc/daw/library/service/SearchService.java)   |
+|5| [Refactor searching mecanism to SearchService. Add Page gets for every entity with variable results depending on parameters.](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/00611da9e53792ba9f8da390e09c17080806c0cb)  | [PostRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/PostRestController.java)   |
+
+En el último commit el archivo más relevante es realmente AdminService, sin embargo este fue eliminado y más tarde refactorizado en SearchService.
 
 ---
 
-#### **Alumno 4 - [Nombre Completo]**
+#### **Alumno 4 - Pablo Ruiz Uroz**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Responsable de la integración del sistema de autenticación mediante JWT. Desarrollo completo de los endpoints de la entidad usuario, junto con la documentación de la API REST. Preparación del sistema para un despliegue dual, permitiendo tanto la carga inicial de datos como la ejecución sin modificaciones en la base de datos. Implementación de un endpoint propio para la exportación a PDF y creación de la colección de Postman para el testing de la API. Desarrollo del Dockerfile y la configuración de Docker Compose.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Add JWT authentication](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/0cf19e3d77120507c6a2763654095ef37ee67c0d)  | [SecurityConfig](backend/src/main/java/es/codeurjc/daw/library/security/SecurityConfig.java)   |
+|2| [Implement User REST endpoints for following logic with security, DTOs, mappers, and error handling](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/4240de136d9f3df0ef3c26cdaa6bc8ad185df49b)  | [UserRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/UserRestController.java)   |
+|3| [User CRUD operations and DTO manage](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/9ace2fed3b264810e6a03030a43fce0a5830fbf6)  | [UserRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/UserRestController.java)   |
+|4| [Add Image upload and Image REST controllers](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/288b2d13cbeb621469f13bac1307c954396c6e6c)  | [ImageRestController](backend/src/main/java/es/codeurjc/daw/library/controller/rest/ImageRestController.java)   |
+|5| [Dual-start web deployment functionality and Postman collection with all endpoints, additional REST functionalities](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/4f1c7b39422ce904941afdc79bbe131879b5e875#diff-b357bac448d6dbc289cd88013dbf9cc867b6f020f90752c84719856323bb6c0a)  | [DSGram.postman_collection](DSGram.postman_collection.json)   |
 
 ---
 
