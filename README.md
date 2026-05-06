@@ -166,7 +166,7 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 Mientras que la apariencia de las pantallas ha cambiado, el flujo de navegación sigue siendo el mismo que el especificado en el anterior diagrama, a excepción de nuevas opciones para administradores que pueden dirigirse a las páginas de detalle de las entidades que gestionan desde el panel de administración. Además, dependiendo del flujo de ejecución y peticiones del usuario se mostrará una información u otra en cada una de las páginas del diagrama p.ej. mostrar el perfil propio o el de otro usuario; sin embargo la navegación entre páginas no se ve alterada.
 
-![Diagrama de navegación actualizado](images/navigation-diagram-2.jpg)
+![Diagrama de navegación actualizado](app-service/images/navigation-diagram-2.jpg)
 
 #### **Capturas de Pantalla Actualizadas**
 
@@ -340,7 +340,7 @@ Mientras que la apariencia de las pantallas ha cambiado, el flujo de navegación
 
 Diagrama mostrando las entidades, sus campos y relaciones:
 
-![Diagrama Entidad-Relación](images/Esquema.jpg)
+![Diagrama Entidad-Relación](app-service/images/Esquema.jpg)
 
 > El diagrama muestra las entidades de la aplicación
 
@@ -348,7 +348,7 @@ Diagrama mostrando las entidades, sus campos y relaciones:
 
 Diagrama de clases de la aplicación con diferenciación por colores o secciones:
 
-![Diagrama de Clases](images/classes-diagram.jpg)
+![Diagrama de Clases](app-service/images/classes-diagram.jpg)
 
 > Los controladores utilizan mútliples servicios. Cada servicio utiliza su respectivo repositorio además de otros servicios que les sean necesarios, lo cual no ha sido representado en el diagrama por simplicidad. Se utilizan también colores diferentes para cada controlador para un mejor entendimiento. Las realciones entre entidades son numerosas porque se ha implementado bidirección entre ellas.
 
