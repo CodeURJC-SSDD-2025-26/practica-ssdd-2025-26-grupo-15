@@ -653,101 +653,257 @@ flowchart LR
 	app -->|POST /api/v1/solutions/media/| pdf
 	app -->|JPA| mysql
 ```
+
 ### **Vídeo de Demostración**
-📹 **[Enlace al vídeo en YouTube](URL_del_video)**
+📹 **[Enlace al vídeo en YouTube](https://www.youtube.com/watch?v=ECXArVw0AcQ)**
 > Vídeo mostrando las principales funcionalidades de la aplicación web.
 
-### **Preparación del Entorno de Desarrollo**
+---
+
+### **Documentación de la API REST**
+
+La aplicación ahora expone **dos APIs REST independientes**, una por cada servicio:
+
+#### **`app-service` — API REST principal**
+Gestiona usuarios, listas, ejercicios, soluciones y comentarios.
+
+📄 **[Especificación OpenAPI (YAML)](app-service/backend/api-docs/api-docs.yaml)**
+📖 **[Documentación HTML](https://raw.githack.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-15/main/app-service/backend/api-docs/api-docs.html)**
+
+> Generada automáticamente con SpringDoc a partir de las anotaciones del código Java.
+
+#### **`pdf-export-service` — API REST de exportación a PDF**
+Recibe los datos de una solución y devuelve un PDF generado.
+
+📄 **[Especificación OpenAPI (YAML)](pdf-export-service/backend/api-docs/api-docs.yaml)**
+📖 **[Documentación HTML](https://raw.githack.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-15/main/pdf-export-service/backend/api-docs/api-docs.html)**
+
+> El `app-service` llama a este servicio internamente via `POST /api/v1/pdf` cuando un usuario solicita exportar una solución.
+
+---
+
+### **Instrucciones de Ejecución (Desarrollo Local)**
 
 #### **Requisitos Previos**
-- **Node.js**: versión 18.x o superior
-- **npm**: versión 9.x o superior (se instala con Node.js)
-- **Git**: para clonar el repositorio
+- **Java** 21 o superior
+- **Maven** 3.8 o superior (`mvn`)
+- **Docker** (para la base de datos MySQL)
 
-#### **Pasos para configurar el entorno de desarrollo**
+#### **Pasos**
 
-1. **Instalar Node.js y npm**
-   
-   Descarga e instala Node.js desde [https://nodejs.org/](https://nodejs.org/)
-   
-   Verifica la instalación:
+1. **Clonar el repositorio**
    ```bash
-   node --version
-   npm --version
+   git clone https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-15.git
+   cd practica-ssdd-2025-26-grupo-15
    ```
 
-2. **Clonar el repositorio** (si no lo has hecho ya)
+2. **Arrancar la base de datos MySQL**
    ```bash
-   git clone https://github.com/[usuario]/[nombre-repositorio].git
-   cd [nombre-repositorio]
+   bash app-service/start_db.sh
+   ```
+   Levanta un contenedor MySQL 9.2 con la BD `dsgram` en el puerto `3306`.
+
+3. **Crear los archivos `.env`**
+
+   **`app-service/backend/.env`**:
+   ```properties
+   DB_USERNAME=<usuario>
+   DB_PASSWORD=<contraseña>
+   DB_NAME=<nombre-esquema>
+   DB_CONFIG=<modo-inicializacion>
+   KEYSTORE_PASSWORD=<contraseña-keystore>
+   KEYSTORE_SECRET=<secreto-keystore>
+   GOOGLE_CLIENT_ID=<client-id-google>
+   GOOGLE_CLIENT_SECRET=<client-secret-google>
+   GITHUB_CLIENT_ID=<client-id-github>
+   GITHUB_CLIENT_SECRET=<client-secret-github>
    ```
 
-3. **Navegar a la carpeta del proyecto React**
+   **`pdf-export-service/backend/.env`** (opcional, solo si quieres sobreescribir el puerto 8080 por defecto).
+
+4. **Arrancar el `pdf-export-service`** (Terminal 1):
    ```bash
-   cd frontend
+   mvn -f pdf-export-service/backend/pom.xml spring-boot:run
+   ```
+   Se levanta en HTTP en el puerto `8080`.
+
+5. **Arrancar el `app-service`** (Terminal 2):
+   ```bash
+   mvn -f app-service/backend/pom.xml spring-boot:run
+   ```
+   Se levanta en HTTPS en el puerto `8443`.
+
+6. **Acceder a la aplicación**:
+   ```
+   https://localhost:8443
+   ```
+   > El certificado es autofirmado; acepta la excepción de seguridad del navegador.
+
+#### **Credenciales de prueba**
+- **Admin**: `user1@example.com` / `pass`
+- **Registrado**: `user2@example.com` / `pass`
+
+---
+
+### **Instrucciones de Ejecución con Docker**
+
+#### **Requisitos previos**
+- Docker 20.10 o superior
+- Docker Compose 2.0 o superior
+
+#### **Variables de entorno**
+
+Crea un archivo `.env` en el directorio donde vayas a ejecutar `docker compose`:
+
+```properties
+DB_USERNAME=<usuario-bd>
+DB_PASSWORD=<contraseña-bd>
+DB_NAME=<nombre-esquema-BD>
+DB_CONFIG=<modo-inicializacion-BD>
+KEYSTORE_PASSWORD=<contraseña-keystore>
+KEYSTORE_SECRET=<secreto-keystore>
+GOOGLE_CLIENT_ID=<client-id-google>
+GOOGLE_CLIENT_SECRET=<client-secret-google>
+GITHUB_CLIENT_ID=<client-id-github>
+GITHUB_CLIENT_SECRET=<client-secret-github>
+```
+
+El `docker-compose.yml` levanta **tres servicios** coordinados:
+| Servicio | Imagen | Puerto |
+|---|---|---|
+| `db` | `mysql:9.6` | `3306` |
+| `pdf` | `pruizz/dsgram-pdf-service-app:latest` | `8080` |
+| `web` | `pruizz/dsgram-app-service-app:latest` | `8443` |
+
+#### **Ejecutar con docker-compose**
+```bash
+docker compose -f docker/docker-compose.yml --env-file .env up
+```
+
+---
+
+### **Construcción de Imágenes Docker**
+
+Los scripts se encuentran en la carpeta `docker/`. Ejecuta siempre desde esa carpeta:
+
+```bash
+cd docker
+```
+
+#### **Construir las imágenes**
+
+```bash
+# app-service
+./create-image.sh app-service <tu-usuario-dockerhub> <version-tag>
+
+# pdf-export-service
+./create-image.sh pdf-export-service <tu-usuario-dockerhub> <version-tag>
+```
+
+Las imágenes generadas se nombran:
+- `<usuario>/dsgram-app-service-app:<tag>`
+- `<usuario>/dsgram-pdf-service-app:<tag>`
+
+#### **Publicar las imágenes en Docker Hub**
+
+```bash
+docker login
+
+./publish_image.sh app-service <tu-usuario-dockerhub> <version-tag>
+./publish_image.sh pdf-export-service <tu-usuario-dockerhub> <version-tag>
+```
+
+#### **Actualizar el docker-compose con los nuevos tags**
+
+```bash
+./publish_docker-compose.sh <tu-usuario-dockerhub> <version-tag>
+```
+
+### **Despliegue en Máquina Virtual**
+
+#### **Requisitos**
+- Acceso SSH a la VM
+- Clave privada para autenticación
+
+#### **Pasos**
+
+1. **Conectar a la VM**:
+   ```bash
+   ssh -i ssh-keys/appWeb15.key vmuser@10.100.139.208
    ```
 
-4. **AQUÍ LOS SIGUIENTES PASOS**
+2. **Crear el archivo `.env`** (con las variables indicadas arriba).
 
-### **Diagrama de Clases y Templates de la SPA**
+3. **Desplegar**:
+   ```bash
+   docker compose -f docker/docker-compose.yml --env-file .env up -d
+   ```
 
-Diagrama mostrando los componentes React, hooks personalizados, servicios y sus relaciones:
+### **URL de la Aplicación Desplegada**
 
-![Diagrama de Componentes React](images/spa-classes-diagram.png)
+🌐 **URL de acceso**: `https://appweb15.dawgis.etsii.urjc.es:8443`
+
+#### **Credenciales de Usuarios de Ejemplo**
+- **Admin**: `user1@example.com` / `pass`
+- **Registrado**: `user2@example.com` / `pass`
 
 ### **Participación de Miembros en la Práctica 3**
 
-#### **Alumno 1 - [Nombre Completo]**
+#### **Alumno 1 - Hugo Capa Mora**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Responsable de migrar la lógica de negocio a arquitectura API REST, implementando los RestControllers para las operaciones CRUD (GET, POST, PUT, DELETE) y creando los DTOs necesarios para la transferencia de datos y manejo de creación de imágenes. Colaborador de la creación de colecciones en Postman para el testeo de los endpoints. Adicionalmente, he colaborado en la configuración de Docker y Docker Compose para el despliegue de la aplicación y su posterior publicación en Docker Hub.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Implement REST controllers for comments and solutions, enhance DTOs, and add solution creation logic without image](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/8cee39a4e536437e80c45dc6636a84f11593ea69)  | [SolutionRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/SolutionRestController.java)   |
+|2| [feat: enhance ExerciseList and Solution controllers with error handling and response improvements; add image to Solution upload functionality](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/65b04152a777480811c0a16f994af4f972af6d39)  | [SolutionRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/SolutionRestController.java)   |
+|3| [feat: enhance ExerciseList functionality with create and update operations; add ExerciseBasicInfoDTO and UserBasicDTO](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/88008ed4aeee0e5796463e778d033cd5bf60c683)  | [ExerciseListRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseListRestController.java)   |
+|4| [feat: createSolution moved to ExerciseRestController, add ExerciseListPostDTO and SolutionPostDTO; update RestControllers to use new DTOs](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/85e916218dd945c68e63692235e065753a17483f)  | [ExerciseListRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseListRestController.java)   |
+|5| [feat: implement ExerciseList REST controller with CRUD operations and DTO mapping](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/a41ac87a7890630b44057e65943996c866f7c0a1)  | [ExerciseListDTO](app-service/backend/src/main/java/es/codeurjc/daw/library/dto/ExerciseListDTO.java)   |
 
 ---
 
-#### **Alumno 2 - [Nombre Completo]**
+#### **Alumno 2 - Isidoro Pérez Rivera**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Responsable de la creación de los endpoints de la entidad Exercise. Implementación de las operaciones CRUD de la entidad Exercise y el diseño de la clase ExerciseRestController y sus respectivos DTOs. Diseño del esquema de clases mostrando la relación entre las clases REST y los Services. Creación de los scripts para publicación de imágenes y artefactos de docker y docker-compose y construcción de la imagen.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Implement Exercise REST controller and service methods; add ExerciseDTO and UserIdDTO](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/2c44ea038ebc9dfdecf5799654e793b926194f8b)  | [ExerciseRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseRestController.java)   |
+|2| [Add delete exercise functionality and update ExerciseDTO structure; introduce ExercisePostDTO and add post exercise functionality. Refactor ExerciseRestController for consistency](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/44ba3cef8a683f80291688c7bc4156281143c4e7)[Part 2](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/95478ec1f5b1ad9ccb7f1b08c5a62b3a2fb2907d) | [ExerciseRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseRestController.java)   |
+|3| [Add updateExercise method and ExercisePutDTO for exercise updates](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/139051a35b1510500215cc97cd287367a2e19207)  | [ExerciseRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseRestController.java)   |
+|4| [Enhance deleteExercise and updateExercise methods with error handling and response entity](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/d58eef948f1326885f41c85a4cbe8f6415295b37)  | [ExerciseRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseRestController.java)   |
+|5| [Create rest class diagram and implement all docker and docker-compose scripts for building and publishing images and artifacts](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/a31d5ad56cd70e638bdb9bf53f99d9cc309d2399)  | [publish_docker-compose.sh](docker/publish_docker-compose.sh)   |
 
 ---
 
-#### **Alumno 3 - [Nombre Completo]**
+#### **Alumno 3 - Jaime Torroba Martínez**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Encargado del listado de todas las entidades listables de forma paginada y dinámica en base a parámetros para lo cual se llevó a cabo la refactorización de búsqueda de elementos listados en un Service, de manera que quede desplazada en la lógica de negocio y sea reutilizable. Encargado a su vez de los endpoints relacionados con la entidad Comentario y de la entidad Post, y con los relacionados con la carga, descarga y borrado del pdf de un ejercicio.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Add pdf upload, download and deletition for Exercise entity](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/bf8a00880eb62dceca5ddcf6a5eb91336cd0a106)  | [ExerciseRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/ExerciseRestController.java)   |
+|2| [Add POST & DELETE methods for Post entity, and all methods involved. Fix multiple Security issues regarding authorization in deletition & update, and incorrect exception catches and server response.](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/c778eb4a26cad80b9280d258c44ed33af9360d15)  | [PostRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/PostRestController.java)   |
+|3| [Add Comment entity POST, GET & DELETE endpoints. Create CommentDTO's & CommentMapper along with implementation of CommentRestController. Fix wrong content load in previous web controllers for pageable petitions.](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/c2570bf7440f10493355ce697efe545a4f28e9fd)  | [CommentRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/CommentRestController.java)   |
+|4| [feat: complete paged GET petitions for users, posts, exercises and exerciselists depending on parameters.](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/1983d1d3201ce023bf2f9ddb226bed946e81f082)  | [SearchService](app-service/backend/src/main/java/es/codeurjc/daw/library/service/SearchService.java)   |
+|5| [Refactor searching mecanism to SearchService. Add Page gets for every entity with variable results depending on parameters.](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/00611da9e53792ba9f8da390e09c17080806c0cb)  | [PostRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/PostRestController.java)   |
+
+En el último commit el archivo más relevante es realmente AdminService, sin embargo este fue eliminado y más tarde refactorizado en SearchService.
 
 ---
 
-#### **Alumno 4 - [Nombre Completo]**
+#### **Alumno 4 - Pablo Ruiz Uroz**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Responsable de la integración del sistema de autenticación mediante JWT. Desarrollo completo de los endpoints de la entidad usuario, junto con la documentación de la API REST. Preparación del sistema para un despliegue dual, permitiendo tanto la carga inicial de datos como la ejecución sin modificaciones en la base de datos. Implementación de un endpoint propio para la exportación a PDF y creación de la colección de Postman para el testing de la API. Desarrollo del Dockerfile y la configuración de Docker Compose. Separación del servicio de exportación a PDF en un microservicio independiente (`pdf-export-service`).
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Add JWT authentication](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/0cf19e3d77120507c6a2763654095ef37ee67c0d)  | [SecurityConfig](app-service/backend/src/main/java/es/codeurjc/daw/library/security/SecurityConfig.java)   |
+|2| [Implement User REST endpoints for following logic with security, DTOs, mappers, and error handling](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/4240de136d9f3df0ef3c26cdaa6bc8ad185df49b)  | [UserRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/UserRestController.java)   |
+|3| [User CRUD operations and DTO manage](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/9ace2fed3b264810e6a03030a43fce0a5830fbf6)  | [UserRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/UserRestController.java)   |
+|4| [Add Image upload and Image REST controllers](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/288b2d13cbeb621469f13bac1307c954396c6e6c)  | [ImageRestController](app-service/backend/src/main/java/es/codeurjc/daw/library/controller/rest/ImageRestController.java)   |
+|5| [Dual-start web deployment functionality and Postman collection with all endpoints, additional REST functionalities](https://github.com/CodeURJC-DAW-2025-26/practica-daw-2025-26-grupo-15/commit/4f1c7b39422ce904941afdc79bbe131879b5e875#diff-b357bac448d6dbc289cd88013dbf9cc867b6f020f90752c84719856323bb6c0a)  | [DSGram.postman_collection](app-service/DSGram.postman_collection.json)   |
+
+---
 
