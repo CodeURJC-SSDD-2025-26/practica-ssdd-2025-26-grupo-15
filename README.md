@@ -629,8 +629,30 @@ Responsable de la integración del sistema de autenticación mediante JWT. Desar
 
 ---
 
-## 🛠 **Práctica 3: Implementación de la web con arquitectura SPA**
+## 🛠 **Práctica 3: API Rest, Docker y evolución a dos servicios indepentidentes:*
+Ejemplo que contiene una evolución de la práctica anterior con dos servicios independientes:
 
+* `app-service`: aplicación web y API REST para gestionar usuarios, listas de ejercicios, ejercicios, soluciones y comentarios.
+* `pdf-export-service`: servicio auxiliar que devuelve el pdf resultado de exportar una solución a pdf.
+
+## Diagrama de servicios
+
+```mermaid
+flowchart LR
+	subgraph Ext[Cliente externo]
+		user[Usuario / Cliente]
+	end
+
+	subgraph App[Aplicacion]
+		app[app-service HTTPS :8443]
+		pdf[pdf-export-service HTTP :8080]
+		mysql[(MySQL dsgram)]
+	end
+
+	user -->|UI web y API REST| app
+	app -->|POST /api/v1/solutions/media/| pdf
+	app -->|JPA| mysql
+```
 ### **Vídeo de Demostración**
 📹 **[Enlace al vídeo en YouTube](URL_del_video)**
 > Vídeo mostrando las principales funcionalidades de la aplicación web.
