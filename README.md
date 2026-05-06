@@ -650,7 +650,7 @@ flowchart LR
 	end
 
 	user -->|UI web y API REST| app
-	app -->|POST /api/v1/solutions/media/| pdf
+	app -->|GET /api/v1/solutions/media/| pdf
 	app -->|JPA| mysql
 ```
 
