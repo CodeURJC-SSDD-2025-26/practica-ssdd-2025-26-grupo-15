@@ -19,6 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
 
 import es.codeurjc.daw.library.dto.ExerciseBasicInfoDTO;
+import es.codeurjc.daw.library.dto.ExerciseMapper;
+import es.codeurjc.daw.library.dto.SolutionMapper;
+import es.codeurjc.daw.library.dto.SolutionPDFInfoDTO;
 import es.codeurjc.daw.library.model.Comment;
 import es.codeurjc.daw.library.model.Image;
 import es.codeurjc.daw.library.model.User;
@@ -27,7 +30,7 @@ import es.codeurjc.daw.library.service.SolutionService;
 import es.codeurjc.daw.library.service.SolutionPdfExportService;
 import es.codeurjc.daw.library.model.Solution;
 import jakarta.servlet.http.HttpServletRequest;
-import main.java.es.codeurjc.daw.library.dto.SolutionPDFInfoDTO;
+
 
 
 
@@ -42,6 +45,11 @@ public class SolutionWebController {
 
     @Autowired
     private SolutionPdfExportService solutionPdfExportService;
+
+    @Autowired
+    private SolutionMapper solutionMapper;
+    @Autowired
+    private ExerciseMapper exerciseMapper;
 
     @GetMapping("/solution/{id}")
     public String solution(Model model, Principal principal, HttpServletRequest request, @PathVariable Long id) {

@@ -230,7 +230,7 @@ public class SolutionPdfExportService {
                 toBytes(pdfBlob));
 
         byte[] pdfBytes = RestClient.create()
-                .get()
+                .method(org.springframework.http.HttpMethod.GET)
                 .uri(pdfServiceUrl + "/api/v1/solutions/media/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_PDF)
