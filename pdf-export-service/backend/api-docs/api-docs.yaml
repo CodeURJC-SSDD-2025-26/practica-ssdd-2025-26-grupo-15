@@ -1,0 +1,79 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8082
+  description: Generated server url
+paths:
+  /api/v1/solutions/media/:
+    post:
+      tags:
+      - solution-rest-controller
+      operationId: createSolutionPDF
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SolutionPdfExportRequestDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+components:
+  schemas:
+    ExerciseBasicInfoDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        numSolutions:
+          type: integer
+          format: int32
+    SolutionPDFInfoDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        owner:
+          $ref: "#/components/schemas/UserBasicInfoDTO"
+        lastUpdate:
+          type: string
+          format: date-time
+        description:
+          type: string
+        exercise:
+          $ref: "#/components/schemas/ExerciseBasicInfoDTO"
+    SolutionPdfExportRequestDTO:
+      type: object
+      properties:
+        solution:
+          $ref: "#/components/schemas/SolutionPDFInfoDTO"
+        exercise:
+          $ref: "#/components/schemas/ExerciseBasicInfoDTO"
+        pdfFile:
+          type: string
+          format: byte
+    UserBasicInfoDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
