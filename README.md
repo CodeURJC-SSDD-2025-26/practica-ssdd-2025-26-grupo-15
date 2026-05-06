@@ -88,66 +88,66 @@ Indicar cuál será el algoritmo o consulta avanzada que se implementará:
 ### **Diagrama de Navegación**
 Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicación:
 
-![Diagrama de Navegación](images/navigation-diagram.jpg)
+![Diagrama de Navegación](app-service/images/navigation-diagram.jpg)
 
 ### **Capturas de Pantalla y Descripción de Páginas**
 
 #### **1. Página Principal / Home**
-![Página Principal](images/home-page.png)
+![Página Principal](app-service/images/home-page.png)
 > Página de inicio que muestra publicaciones recientes que refieren a contenido nuevo o modificado en listas de usuarios seguidos, ejercicios o soluciones suyas. También se mostrarán algunos de los usuarios seguidos, así como una barra de búsqueda para poder encontrar nuevos usuarios que seguir. 
 
 #### **2. Página de inicio de sesión / Log In**
-![Log In](images/log-in.png)
+![Log In](app-service/images/log-in.png)
 > Página que se muestra para acceder a la aplicación en la que el usuario podrá iniciar sesión o acceder de manera anónima.
 
 #### **3. Página de Registro de usuario / Sign up**
-![Sign up](images/sign-up.png)
+![Sign up](app-service/images/sign-up.png)
 > Página en la que un usuario no registrado podrá darse de alta con su correo, nombre de usuario y contraseña y podrá acceder a la aplicación tras hacerlo.
 
 #### **4. Página del perfil de usuario / Profile**
 
-![Porfile](images/profile.png)
+![Porfile](app-service/images/profile.png)
 > Página del perfil de usuario que muestra sus datos de la aplicación, sus solicitudes recientes, número de seguidos, seguidores y las listas que tiene subidas. Permite el acceso a editar perfil y cerrar sesión desde un menú que se despliega en la foto de perfil.
 
 #### **5. Página de seguidores / Followers**
-![Followers](images/followers.png)
+![Followers](app-service/images/followers.png)
 > Página que muestra los seguidores de un usuario determinado, permite mostrar más para ver la totalidad de usuarios que le siguen.
 
 #### **6. Página de solicitudes de seguimiento  / Follow-requests**
-![Follow requests](images/follow-requests.png)
+![Follow requests](app-service/images/follow-requests.png)
 > Página para visualizar la totalidad de solicitudes de seguimiento que tiene un usuario para que pueda aceptarlas o rechazarlas.
 
 #### **7. Página de Lista  / List-view**
-![List](images/list-view.png)
+![List](app-service/images/list-view.png)
 > Página en la que se podrán encontrar todos los ejercicios de la lista de un usuario
 
 #### **8. Página de ejercicio / Exercise**
-![Exercise](images/exercise.png)
+![Exercise](app-service/images/exercise.png)
 > Página en la que se encontrará el enunciado de un ejercicio y las soluciones de otros usuarios a este.
 
 #### **9. Página de solución / Solution**
-![Solution](images/solution.png)
+![Solution](app-service/images/solution.png)
 > Página en la que se encontrará la solución de un usuario a un ejercicio y los comentarios de otros usuarios a esta. Los usuarios registrados podrán añadir comentarios.
 
 
 #### **10. Página de creación de una nueva lista/ New-list**
-![New List](images/new-list.png)
+![New List](app-service/images/new-list.png)
 > Página de creación de una nueva lista de ejercicios que serán publicadas por un usuario en la aplicación. Se podra añadir titulo, descripción, y tipo principal de ejercicios.
 
 #### **. 11 Página de creación de un nuevo ejercicio/ New-exercise**
-![New Exercise](images/new-exercise.png)
+![New Exercise](app-service/images/new-exercise.png)
 > Página de creación de una nuevo ejercicio que formara parte de una lista creada previamente.Cada ejercicicio podra contener nombre, descripción y un pdf adjunto con el enunciado detallado si existiera.
 
 #### **. 12 Página de creación de una nueva solución/ New-Solution**
-![New Solution](images/new-solution.png)
+![New Solution](app-service/images/new-solution.png)
 > Página de creación de una nueva solución creada para uno de los ejercicios publicados de una lista.Se podrá hacer uso del visualizador para crear la solución. 
 
 #### **13. Página panel de administrador  / Admin panel**
-![Admin Panel](images/admin.png)
+![Admin Panel](app-service/images/admin.png)
 > Página para que el usuario administrador pueda visualizar el panel que tiene para poder ejecutar sus poderes especiales, como borrar usuarios, listas y ejercicios.
 
 #### **14. Página de editar perfil  / Edit profile**
-![Edit Profile](images/edit-profile.png)
+![Edit Profile](app-service/images/edit-profile.png)
 > Página para que el usuario pueda editar sus datos de nombre, descripción, especialidad y foto de perfil.
 
 
@@ -166,104 +166,104 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 Mientras que la apariencia de las pantallas ha cambiado, el flujo de navegación sigue siendo el mismo que el especificado en el anterior diagrama, a excepción de nuevas opciones para administradores que pueden dirigirse a las páginas de detalle de las entidades que gestionan desde el panel de administración. Además, dependiendo del flujo de ejecución y peticiones del usuario se mostrará una información u otra en cada una de las páginas del diagrama p.ej. mostrar el perfil propio o el de otro usuario; sin embargo la navegación entre páginas no se ve alterada.
 
-![Diagrama de navegación actualizado](images/navigation-diagram-2.jpg)
+![Diagrama de navegación actualizado](app-service/images/navigation-diagram-2.jpg)
 
 #### **Capturas de Pantalla Actualizadas**
 
 #### **1. Página Principal**
-![Página Principal](images/homep1.png)
+![Página Principal](app-service/images/homep1.png)
 > Página de inicio que muestra publicaciones recientes que refieren a contenido nuevo o modificado en listas de usuarios seguidos, ejercicios o soluciones suyas. También se mostrarán algunos de los usuarios sugeridos, así como una barra de búsqueda para poder encontrar nuevos usuarios que seguir. 
 
 #### **2. Página de inicio de sesión / Log In**
-![Log In](images/loginp1.png)
+![Log In](app-service/images/loginp1.png)
 > Página que se muestra para acceder a la aplicación en la que el usuario podrá iniciar sesión con correo en la aplicación, cuenta de Google, cuenta de Github o acceder de manera anónima.
 
 #### **3. Página de Registro de usuario / Sign up**
-![Sign up](images/signinp1.png)
+![Sign up](app-service/images/signinp1.png)
 > Página en la que un usuario no registrado podrá darse de alta con su correo, nombre de usuario y contraseña y podrá acceder a la aplicación tras hacerlo.
 
 #### **4. Página Principal Anónima / Anonymous Home**
-![Anonymous Home](images/anonymoushome.png)
+![Anonymous Home](app-service/images/anonymoushome.png)
 > Vista de la página principal orientada a usuarios no registrados, permitiendo explorar parte de la plataforma antes de iniciar sesión.
 
 #### **5. Vista Anónima / Anonymous View**
-![Anonymous View](images/anonymousview.png)
+![Anonymous View](app-service/images/anonymousview.png)
 > Interfaz que muestra contenido privado a los usuarios que navegan por la aplicación sin tener una cuenta activa.
 
 #### **6. Perfil de Usuario / Profile**
-![Profile](images/profilep1.png)
+![Profile](app-service/images/profilep1.png)
 > Página personal del usuario donde se muestra su información, biografía, contadores de seguidores/seguidos y las listas de ejercicios que ha creado.
 
 #### **7. Seguidores / Followers**
-![Followers](images/followersp1.png)
+![Followers](app-service/images/followersp1.png)
 > Listado completo de todos los usuarios que siguen a la cuenta actual, permitiendo gestionar la comunidad.
 
 #### **8. Seguidos / Following**
-![Following](images/followingp1.png)
+![Following](app-service/images/followingp1.png)
 > Listado de todas las cuentas a las que el usuario actual está siguiendo en la plataforma.
 
 #### **9. Solicitudes de Seguimiento / Follow Requests**
-![Follow Requests](images/followrequestsp1.png)
+![Follow Requests](app-service/images/followrequestsp1.png)
 > Panel donde el usuario puede gestionar su privacidad aceptando o rechazando las peticiones de seguimiento de otras personas.
 
 #### **10. Panel de Administración de Usuarios / Admin Panel Users**
-![Admin Panel Users](images/adminpanelusers.png)
+![Admin Panel Users](app-service/images/adminpanelusers.png)
 > Herramienta exclusiva para administradores que permite gestionar, buscar y moderar las cuentas de usuario registradas en el sistema.
 
 #### **11. Panel de Administración de Listas / Admin Panel Lists**
-![Admin Panel Lists](images/adminpanellists.png)
+![Admin Panel Lists](app-service/images/adminpanellists.png)
 > Vista administrativa diseñada para supervisar, editar o eliminar de forma global las listas creadas por los usuarios.
 
 #### **12. Panel de Administración de Ejercicios / Admin Panel Exercises**
-![Admin Panel Exercises](images/adminpanelexercises.png)
+![Admin Panel Exercises](app-service/images/adminpanelexercises.png)
 > Interfaz de administración dedicada a la moderación y control de todos los ejercicios publicados en la plataforma.
 
 #### **13. Editar Perfil / Edit Profile**
-![Edit Profile](images/editprofilep1.png)
+![Edit Profile](app-service/images/editprofilep1.png)
 > Formulario de ajustes donde el usuario puede actualizar su foto de perfil, nombre, biografía y especialidad.
 
 #### **14. Vista de Lista / List View**
-![List View](images/listviewp1.png)
+![List View](app-service/images/listviewp1.png)
 > Visualización detallada de una lista propia, mostrando todos los ejercicios que contiene y permitiendo su completa gestión.
 
 #### **15. Editar Lista / Edit List**
-![Edit List](images/editlistp1.png)
+![Edit List](app-service/images/editlistp1.png)
 > Pantalla de edición para modificar los detalles de una lista existente, como cambiar su título o actualizar su descripción.
 
 #### **16. Añadir Lista / Add List**
-![Add List](images/addlistp1.png)
+![Add List](app-service/images/addlistp1.png)
 > Formulario principal para que el usuario pueda crear una nueva lista y empezar a organizar su contenido.
 
 #### **17. Añadir Ejercicio / Add Exercise**
-![Add Exercise](images/addexercisep1.png)
+![Add Exercise](app-service/images/addexercisep1.png)
 > Página que permite añadir un nuevo ejercicio a una lista, incluyendo campos para el título, descripción y la subida de un archivo PDF adjunto.
 
 #### **18. Añadir Solución / Add Solution**
-![Add Solution](images/addsolutionp1.png)
+![Add Solution](app-service/images/addsolutionp1.png)
 > Interfaz específica para que los usuarios puedan publicar la respuesta o resolución a un ejercicio en concreto.
 
 #### **19. Vista de Ejercicio / Exercise View**
-![Exercise View](images/exerciseviewp1.png)
+![Exercise View](app-service/images/exerciseviewp1.png)
 > Detalle completo de un ejercicio propio, donde se puede consultar el enunciado, ver el PDF asociado y gestionar las soluciones aportadas.
 
 #### **20. Vista de Solución / Solution View**
-![Solution View](images/solutionviewp1.png)
+![Solution View](app-service/images/solutionviewp1.png)
 > Página enfocada en mostrar la resolución detallada de un ejercicio para su consulta o evaluación, permitiendo su exportación a pdf.
 
 #### **21. Añadir Comentario / Add Comment**
-![Add Comment](images/addcommentviewp1.png)
+![Add Comment](app-service/images/addcommentviewp1.png)
 > Sección habilitada para interactuar con el contenido, permitiendo dejar feedback, valoraciones o dudas en los ejercicios y soluciones.
 
 #### **22. Perfil de Otro Usuario / Other Profile**
-![Other Profile](images/otherprofilep1.png)
+![Other Profile](app-service/images/otherprofilep1.png)
 > Vista pública del perfil de un tercero, donde se pueden consultar sus listas públicas y enviarle una solicitud para seguirle.
 
 #### **23. Vista de Lista (No Propietario) / List View Not Owner**
-![List View Not Owner](images/listviewnotownerp1.png)
+![List View Not Owner](app-service/images/listviewnotownerp1.png)
 > Visualización de una lista perteneciente a otro usuario. Permite consultar el contenido organizado pero sin opciones de borrado.
 
 #### **24. Vista de Ejercicio (No Propietario) / Exercise View Not Owner**
-![Exercise View Not Owner](images/exerciseviewnotownerp1.png)
+![Exercise View Not Owner](app-service/images/exerciseviewnotownerp1.png)
 > Pantalla de un ejercicio creado por otra persona. Permite consultar el enunciado y añadir soluciones, pero no borrarlas.
 
 ### **Instrucciones de Ejecución**
@@ -340,7 +340,7 @@ Mientras que la apariencia de las pantallas ha cambiado, el flujo de navegación
 
 Diagrama mostrando las entidades, sus campos y relaciones:
 
-![Diagrama Entidad-Relación](images/Esquema.jpg)
+![Diagrama Entidad-Relación](app-service/images/Esquema.jpg)
 
 > El diagrama muestra las entidades de la aplicación
 
@@ -348,7 +348,7 @@ Diagrama mostrando las entidades, sus campos y relaciones:
 
 Diagrama de clases de la aplicación con diferenciación por colores o secciones:
 
-![Diagrama de Clases](images/classes-diagram.jpg)
+![Diagrama de Clases](app-service/images/classes-diagram.jpg)
 
 > Los controladores utilizan mútliples servicios. Cada servicio utiliza su respectivo repositorio además de otros servicios que les sean necesarios, lo cual no ha sido representado en el diagrama por simplicidad. Se utilizan también colores diferentes para cada controlador para un mejor entendimiento. Las realciones entre entidades son numerosas porque se ha implementado bidirección entre ellas.
 
@@ -433,8 +433,8 @@ Control dinámico de los elementos mostrados en la interfaz según el rol del us
 
 Diagrama actualizado incluyendo los @RestController y su relación con los @Service compartidos:
 
-![Diagrama de Clases con Web Controllers](images/classes-diagram.jpg)
-![Diagrama de Clases con Rest Controllers](images/rest-classes-diagram.jpg)
+![Diagrama de Clases con Web Controllers](app-service/images/classes-diagram.jpg)
+![Diagrama de Clases con Rest Controllers](app-service/images/rest-classes-diagram.jpg)
 
 ### **Instrucciones de Ejecución con Docker**
 
@@ -650,7 +650,7 @@ flowchart LR
 	end
 
 	user -->|UI web y API REST| app
-	app -->|POST /api/v1/solutions/media/| pdf
+	app -->|GET /api/v1/solutions/media/| pdf
 	app -->|JPA| mysql
 ```
 
@@ -681,7 +681,14 @@ Recibe los datos de una solución y devuelve un PDF generado.
 > El `app-service` llama a este servicio internamente via `POST /api/v1/pdf` cuando un usuario solicita exportar una solución.
 
 ---
+### **Diagrama de Clases y Templates Actualizado**
 
+Diagrama actualizado incluyendo los @RestController y su relación con los @Service compartidos:
+
+![Diagrama de Clases con Web Controllers](app-service/images/classes-diagram.jpg)
+![Diagrama de Clases con Rest Controllers](app-service/images/rest-classes-diagram.jpg)
+
+---
 ### **Instrucciones de Ejecución (Desarrollo Local)**
 
 #### **Requisitos Previos**
