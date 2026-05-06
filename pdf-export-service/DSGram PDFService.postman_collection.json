@@ -1,0 +1,32 @@
+{
+  "info": {
+    "_postman_id": "30261b73-339b-4b5b-a288-3d0f275a631a",
+    "name": "DSGram PDFService",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52907052",
+    "_collection_link": "https://go.postman.co/collection/52907052-30261b73-339b-4b5b-a288-3d0f275a631a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "ExportPDF(Users)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/solutions/media/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "solutions",
+            "media",
+            ""
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
