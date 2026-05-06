@@ -38,6 +38,7 @@ services:
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       - SPRING_JPA_HIBERNATE_DDL_AUTO=${DB_CONFIG:-none}
+      - PDF_SERVICE_URL=http://pdf:8080
     depends_on:
       db:
         condition: service_healthy

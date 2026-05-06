@@ -17,13 +17,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
+
+import es.codeurjc.daw.library.dto.ExerciseBasicInfoDTO;
 import es.codeurjc.daw.library.model.Comment;
+import es.codeurjc.daw.library.model.Image;
 import es.codeurjc.daw.library.model.User;
 import es.codeurjc.daw.library.service.UserService;
 import es.codeurjc.daw.library.service.SolutionService; 
 import es.codeurjc.daw.library.service.SolutionPdfExportService;
 import es.codeurjc.daw.library.model.Solution;
 import jakarta.servlet.http.HttpServletRequest;
+import main.java.es.codeurjc.daw.library.dto.SolutionPDFInfoDTO;
 
 
 
@@ -121,24 +125,21 @@ public class SolutionWebController {
 
     @GetMapping("/solution/{id}/export/pdf")
     @ResponseBody
-    public ResponseEntity<byte[]> exportSolutionPdf(@PathVariable Long id, Principal principal) {
-        try {
-            Solution solution = solutionService.findById(id);
-            byte[] pdf = solutionPdfExportService.generateSolutionPdf(solution);
-            String safeName = solutionService.sanitizeFileName(solution.getName());
-            String fileName = "solution-" + solution.getId() + "-" + safeName + ".pdf";
+    public ResponseEntity<byte[]> createSolutionPDF(@PathVariable Long id) {
+
+            Solution solution = solutionService.getSolutionById(id);
+            SolutionPDFInfoDTO solPdf = solutionMapper.toPdfDTO(solution);
+            Image image = solution.getSolImage();
+            ExerciseBasicInfoDTO exerciseDTO = exerciseMapper.toBasicDTO(solution.getExercise());
+
+            byte[] pdfBytes = solutionPdfExportService.sendCreationPdf(solPdf, exerciseDTO, image != null ? image.getImageFile() : null);    
 
             return ResponseEntity.ok()
-                    .contentType(MediaType.APPLICATION_PDF)
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
-                    .body(pdf);
-        } catch (RuntimeException e) {
-            if (e.getMessage() != null && e.getMessage().contains("Solution not found")) {
-                return ResponseEntity.notFound().build();
-            }
-            return ResponseEntity.internalServerError().build();
-        }
-    }
+                .contentType(MediaType.APPLICATION_PDF)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=solution.pdf")
+                .body(pdfBytes);        
+
+    } 
 
     private User resolveUser(Principal principal) {
         if (principal instanceof OAuth2AuthenticationToken oauth2Token) {
