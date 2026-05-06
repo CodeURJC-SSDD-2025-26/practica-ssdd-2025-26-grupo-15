@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import es.codeurjc.daw.library.DTO.SolutionPdfExportRequestDTO;
 import es.codeurjc.daw.library.service.SolutionPdfExportService;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -21,7 +23,7 @@ public class SolutionRestController {
     @Autowired
     private SolutionPdfExportService solutionPdfExportService;
 
-    @PostMapping("/media/")
+    @GetMapping("/media/")
     public byte[] createSolutionPDF(@RequestBody SolutionPdfExportRequestDTO requestDTO) {
         try {
             byte[] pdfData = solutionPdfExportService.generateSolutionPdf(requestDTO.solution(), requestDTO.exercise(), requestDTO.pdfFile());
