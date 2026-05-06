@@ -9,9 +9,21 @@
   "item": [
     {
       "name": "ExportPDF(Users)",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
       "request": {
-        "method": "POST",
+        "method": "GET",
         "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
         "url": {
           "raw": "{{baseUrl}}/api/v1/solutions/media/",
           "host": [
